@@ -6,6 +6,7 @@ class SVDpp(keras.Model):
     """
     SVD++ - An extension of the SVD Model employing implicit Feedback as originally
     demonstrated in the paper "Factorization meets the neighborhood: a multifaceted collaborative filtering model".
+    Link - https://dl.acm.org/doi/10.1145/1401890.1401944 Section 4
 
     - Base - keras.Model
 
@@ -37,10 +38,45 @@ class SVDpp(keras.Model):
         l2 regularization factor for item bias (default reg_all)
     random_state : integer
         seed variable, useful for reproducing results (default None)
+
+    Methods
+    -------
+    implicit_feedback(X)
+       creates a class variable used for implicit feedback
+       needs to be called before calling fit() method
     """
 
     def __init__(self, n_users, n_items, global_mean, embedding_dim=50, init_mean=0, init_std_dev=0.1, reg_all=0.0001,
                  reg_user_embed=None, reg_item_embed=None, reg_impl_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+        """
+        Parameters:
+        -----------
+        n_users : int
+            total number of users in the dataset
+        n_items : int
+            total number of items in the dataset
+        global_mean : float
+            mean of ratings in the training set
+        embedding_dim : int
+            number of factors for user and item (default 50)
+        init_mean : float
+            mean of random initilization for embeddings (default 0)
+        init_std_dev : float
+            standard deviation of random initilization for embeddings (default 0.1)
+        reg_all : float
+            l2 regularization factor for all trainable variables (default 0.0001)
+        reg_user_embed : float
+            l2 regularization factor for user embedding (default reg_all)
+        reg_item_embed : float
+            l2 regularization factor for item embedding (default reg_all)
+        reg_user_bias : float
+            l2 regularization factor for user bias (default reg_all)
+        reg_item_bias : float
+            l2 regularization factor for item bias (default reg_all)
+        random_state : integer
+            seed variable, useful for reproducing results (default None)
+        """
+
         super().__init__(**kwargs)
         self.n_users = n_users
         self.n_items = n_items
@@ -88,27 +124,47 @@ class SVDpp(keras.Model):
             embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_bias)
         )
 
-    def preprocess(self, X):
+    def implicit_feedback(self, X):
+        """Maps a user to rated items for implicit feedback
+
+        Needs to be called before fitting the Model.
+
+        Parameters
+        ---------
+        X : m by 2 numpy array
+          User item Table
+        """
+
         self.user_rated_items = [[] for _ in range(self.n_users)]
         for u, i in zip(X[:, 0], X[:, 1]):
             self.user_rated_items[u].append(i)
+
+        # Converts to ragged tensor to be used during forward pass
         self.user_rated_items = tf.ragged.constant(
             self.user_rated_items, dtype=tf.int32)
 
     def call(self, inputs):
+        """Forward pass of input batch"""
+        # Separate Inputs
         user, item = inputs[:, 0], inputs[:, 1]
+
+        # Get Embeddings
         user_embed, item_embed = self.user_embedding(
             user), self.item_embedding(item)
         user_bias, item_bias = self.user_bias(user), self.item_bias(item)
+
+        # Gather Rated Items & their lengths
         rated_items = tf.gather(self.user_rated_items, user)
         item_lengths = tf.cast(
             tf.map_fn(tf.shape, rated_items).to_tensor(), dtype=tf.float32)
 
+        # Calculate Implicit Feedback
         implicit_embed = self.item_implicit_embedding(rated_items)
         implicit_embed_sum = tf.reduce_sum(implicit_embed, axis=1)
         moderated_implicit_embed = tf.math.divide(
             implicit_embed_sum, tf.math.sqrt(item_lengths))
 
+        # Calculate Final Rating with bias
         total_user_embed = tf.math.add(user_embed, moderated_implicit_embed)
         rating = tf.math.reduce_sum(tf.multiply(
             total_user_embed, item_embed), 1, keepdims=True)
