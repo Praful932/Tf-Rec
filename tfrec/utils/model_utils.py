@@ -26,7 +26,7 @@ def preprocess_and_split(df, shuffle=True, split=True, test_size=0.2, random_sta
 
     Returns
     -------
-    Tuple : dataset, user_item_encodings
+    dataset, user_item_encodings : tuple
             dataset contains tuple of train and test variables if shuffle = True
             dataset - (x_train, y_train), (x_test, y_test)
             user_item_encodings - (user_to_encoded, encoded_to_user,item_to_encoded, encoded_to_item)
@@ -76,7 +76,7 @@ def preprocess_and_split(df, shuffle=True, split=True, test_size=0.2, random_sta
     return dataset, user_item_encodings
 
 
-def cross_validation(model, X, y, folds=5, epochs=10, batch_size=32, callbacks=None, random_state=None):
+def cross_validate(model, X, y, folds=5, epochs=5, batch_size=32, callbacks=None, shuffle=False, random_state=None):
     """Performs K-Fold cross validation on data
 
     Parameters
@@ -95,8 +95,10 @@ def cross_validation(model, X, y, folds=5, epochs=10, batch_size=32, callbacks=N
         batch_size to be passed in while fitting (default 32)
     callbacks : list
         list of callbacks to be passed in while fitting (default None)
+    shuffle : boolean
+        shuffle before splitting into batches or not (default False)
     random_state : integer
-        seed variable, useful for reproducing results (default None)
+        seed variable, only useful if shuffle = True (default None)
 
     Returns
     -------
@@ -106,13 +108,13 @@ def cross_validation(model, X, y, folds=5, epochs=10, batch_size=32, callbacks=N
     """
 
     # Initalize KFold
-    kfolds = KFold(n_splits=folds, random_state=random_state)
+    kfolds = KFold(n_splits=folds, random_state=random_state, shuffle=shuffle)
     all_metrics = []
 
     # To build the model
     if type(model).__name__ == 'SVDpp':
-        model.implicit_feedback(X[:10,:])
-    model(X[:10,:])
+        model.implicit_feedback(X[:10, :])
+    model(X[:10, :])
 
     # Workaround to reset weights after each fold fit
     weights = model.get_weights()
@@ -124,15 +126,17 @@ def cross_validation(model, X, y, folds=5, epochs=10, batch_size=32, callbacks=N
         if type(model).__name__ == 'SVDpp':
             model.implicit_feedback(X[train])
 
+        print(f'\nFitting on Fold {i}')
         # Train and evaluate metrics
-        history = model.fit(X[train], y[train], batch_size=batch_size, epochs=epochs, validation_data=(X[val], y[val]),
-                            callbacks=callbacks)
+        history = model.fit(
+            X[train], y[train], batch_size=batch_size, epochs=epochs, callbacks=callbacks)
+        print(f'\nEvaluating on Fold {i}')
         fold_score = model.evaluate(X[val], y[val])
         all_metrics.append(fold_score)
 
         if folds != i:
-          model.set_weights(weights)
-        
+            model.set_weights(weights)
+
         i += 1
 
     all_metrics = np.array(all_metrics)
@@ -140,4 +144,4 @@ def cross_validation(model, X, y, folds=5, epochs=10, batch_size=32, callbacks=N
     for i, metric in enumerate(model.metrics_names):
         print(f'Mean {metric.capitalize()} : {np.mean(all_metrics.T[i])}')
 
-    return all_metrics
+    return all_metrics, model
