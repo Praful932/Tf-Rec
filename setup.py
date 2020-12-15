@@ -9,7 +9,7 @@ with open(readme_path, encoding="utf8") as f:
 
 setup(
     name='tfrec',
-    version='1.0.2',
+    version='1.0.3',
     description='A recommender library built on top of Tensorflow and \
     Keras with implementations of SVD and SVD++ algorithms.',
     packages=find_packages(),
@@ -34,9 +34,7 @@ setup(
         'tensorflow>=2.0',
         'numpy>=1.18.5',
         'pandas>=1.1.5',
-        'sklearn>=0.22.2',
+        'scikit-learn>=0.22.2',
         'requests',
-        'zipfile',
-        'io',
     ],
 )
