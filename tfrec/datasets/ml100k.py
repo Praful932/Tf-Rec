@@ -5,14 +5,13 @@ import pandas as pd
 
 
 def fetch_ml_100k():
-    """Fetch the MovieLens 100k Dataset
+    """Fetches the MovieLens 100k Dataset.
 
     Returns
     -------
-    dataframe
-        a dataframe of m by 3 columns - userId, movieId,rating
+    pandas.dataframe
+        Of shape `m by 3`, Columns - ``userId``, ``movieId``,``rating``
     """
-
     r = requests.get(
         'http://files.grouplens.org/datasets/movielens/ml-latest-small.zip')
     z = zipfile.ZipFile(io.BytesIO(r.content))

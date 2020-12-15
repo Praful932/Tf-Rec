@@ -1,83 +1,84 @@
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 
 class SVD(keras.Model):
-    """
-    SVD - A Matrix Factorization Algorithm for Collabarative Filtering as demonstrated by
-    Simon Funk in his blogpost - https://sifter.org/~simon/journal/20061211.html
+    """ **SVD** - A Matrix Factorization Algorithm for Collaborative Filtering.
 
-    - Base - keras.Model
+    As demonstrated by Simon Funk in his
+    blogpost https://sifter.org/~simon/journal/20061211.html.
 
     ...
 
     Attributes
     -----------
     n_users : int
-        total number of users in the dataset
+        Total number of users in the dataset.
     n_items : int
-        total number of items in the dataset
+        Total number of items in the dataset.
     global_mean : float
-        mean of ratings in the training set
-    embedding_dim : int
-        number of factors for user and item (default 50)
-    biased : boolean
-        whether bias should be used or not (default True)
-    init_mean : float
-        mean of random initilization for embeddings (default 0)
-    init_std_dev : float
-        standard deviation of random initilization for embeddings (default 0.1)
-    reg_all : float
-        l2 regularization factor for all trainable variables (default 0.0001)
-    reg_user_embed : float
-        l2 regularization factor for user embedding (default reg_all)
-    reg_item_embed : float
-        l2 regularization factor for item embedding (default reg_all)
-    reg_user_bias : float
-        l2 regularization factor for user bias (default reg_all)
-    reg_item_bias : float
-        l2 regularization factor for item bias (default reg_all)
-    random_state : integer
-        seed variable, useful for reproducing results (default None)
+        Mean of ratings in the training set.
+    embedding_dim : int, optional
+        Number of factors for user and item (default is `50`).
+    biased : boolean, optional
+        Whether bias should be used or not (default is `True`).
+    init_mean : float, optional
+        Mean of random initilization for embeddings (default is `0`).
+    init_std_dev : float, optional
+        Standard deviation of random initilization for embeddings (default is `0.1`).
+    reg_all : float, optional
+        L2 regularization factor for all trainable variables (default is `0.0001`).
+    reg_user_embed : float, optional
+        L2 regularization factor for user embedding (default is `reg_all`).
+    reg_item_embed : float, optional
+        L2 regularization factor for item embedding (default is `reg_all`).
+    reg_user_bias : float, optional
+        L2 regularization factor for user bias (default is `reg_all`).
+    reg_item_bias : float, optional
+        L2 regularization factor for item bias (default is `reg_all`).
+    random_state : integer, optional
+        Seed variable, useful for reproducing results (default is `None`).
     """
 
-    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, biased=True, init_mean=0, init_std_dev=0.1, reg_all=0.0001,
-                 reg_user_embed=None, reg_item_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, biased=True,
+                 init_mean=0, init_std_dev=0.1, reg_all=0.0001, reg_user_embed=None,
+                 reg_item_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
         """
         Parameters
         -----------
         n_users : int
-            total number of users in the dataset
+            Total number of users in the dataset.
         n_items : int
-            total number of items in the dataset
+            Total number of items in the dataset.
         global_mean : float
-            mean of ratings in the training set
-        embedding_dim : int
-            number of factors for user and item (default 50)
-        biased : boolean
-            whether bias should be used or not (default True)
-        init_mean : float
-            mean of random initilization for embeddings (default 0)
-        init_std_dev : float
-            standard deviation of random initilization for embeddings (default 0.1)
-        reg_all : float
-            l2 regularization factor for all trainable variables (default 0.0001)
-        reg_user_embed : float
-            l2 regularization factor for user embedding (default reg_all)
-        reg_item_embed : float
-            l2 regularization factor for item embedding (default reg_all)
-        reg_user_bias : float
-            l2 regularization factor for user bias (default reg_all)
-        reg_item_bias : float
-            l2 regularization factor for item bias (default reg_all)
-        random_state : integer
-            seed variable, useful for reproducing results (default None)
+            Mean of ratings in the training set.
+        embedding_dim : int, optional
+            Number of factors for user and item (default is `50`).
+        biased : boolean, optional
+            Whether bias should be used or not (default is `True`).
+        init_mean : float, optional
+            Mean of random initilization for embeddings (default is `0`).
+        init_std_dev : float, optional
+            Standard deviation of random initilization for embeddings (default is `0.1`).
+        reg_all : float, optional
+            L2 regularization factor for all trainable variables (default is `0.0001`).
+        reg_user_embed : float, optional
+            L2 regularization factor for user embedding (default is `reg_all`).
+        reg_item_embed : float, optional
+            L2 regularization factor for item embedding (default is `reg_all`).
+        reg_user_bias : float, optional
+            L2 regularization factor for user bias (default is `reg_all`).
+        reg_item_bias : float, optional
+            L2 regularization factor for item bias (default is `reg_all`).
+        random_state : integer, optional
+            Seed variable, useful for reproducing results (default is `None`).
         """
 
         super().__init__(**kwargs)
         self.n_users = n_users
         self.n_items = n_items
-        self.global_mean = global_mean
+        self.global_mean = global_mean.astype(np.float32)
         self.embedding_dim = embedding_dim
         self.biased = biased
         self.init_mean = init_mean
@@ -118,7 +119,7 @@ class SVD(keras.Model):
             )
 
     def call(self, inputs):
-        """Forward pass of input batch"""
+        """Forward pass of input batch."""
         # Separate Inputs
         user, item = inputs[:, 0], inputs[:, 1]
 

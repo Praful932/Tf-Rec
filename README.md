@@ -24,11 +24,11 @@ The package is available on PyPi:
 ### Supported Algorithms 🎯
 Currently the library supports these algorithms:
 - **SVD** - Despite the Name, it is different from the Matrix Eigen Decomposition of Assymmetric Matrices. In a gist, it approximates a vector for each user and each item. The vector contains latent factors which signify for brevity sake, if the item is a movie the movie vector would represent - how much the movie contains action or romance likewise. Similarly for the user.
-The predicted rating is given by:
+The predicted rating is given by:   <br />
 ![](https://latex.codecogs.com/png.latex?\hat{r}_{u,&space;i}&space;=&space;\bar{r}&space;&plus;&space;b_{u}&space;&plus;&space;b_{i}&space;&plus;&space;\sum_{f=1}^{F}&space;p_{u,&space;f}&space;*&space;q_{i,&space;f})
 
 - **SVD++** - This is an extension of SVD which incorporates implicit feedback, by also taking into account the interactions between the user and the item by involving another factor. More Precisely, it takes into account the fact that the user has rated an item itself as a preference than an item which the user has not rated.
-The predicted rating is given by:
+The predicted rating is given by:<br />
 ![image](https://user-images.githubusercontent.com/45713796/101982506-6ca03180-3c9a-11eb-8285-f9f243ab877c.png)
 
 ### Benchmark 🔥

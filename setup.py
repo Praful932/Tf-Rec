@@ -2,14 +2,14 @@ from setuptools import setup, find_packages
 import pkg_resources
 
 
-readme_path = pkg_resources.resource_filename(__name__,'README.md')
+readme_path = pkg_resources.resource_filename(__name__, 'README.md')
 with open(readme_path, encoding="utf8") as f:
     long_description = f.read()
 
 
 setup(
     name='tfrec',
-    version='1.0.3',
+    version='1.0.6',
     description='A recommender library built on top of Tensorflow and \
     Keras with implementations of SVD and SVD++ algorithms.',
     packages=find_packages(),

@@ -4,32 +4,39 @@ from sklearn.model_selection import train_test_split, KFold
 
 
 def preprocess_and_split(df, shuffle=True, split=True, test_size=0.2, random_state=None):
-    """Preprocesses and Splits the dataset if necessary
+    """Preprocesses and Splits the dataset if necessary.
 
-    Prepares the dataset to be passed into the model
-    - Encodes User and Item, each from 0 to len(user/item)
-    - Splits into Train and Test and shuffles if shuffle = True
-    - Returns Dataset as numpy arrays and Encoding of users and items
+    **Encodes** & **Decodes** User and Item, each from `0 to len(user) and len(item)`.
+
+    Splits into **Train** and **Test** and shuffles(if `shuffle = True`).
+
+    Returns Dataset as numpy arrays and **Encoding** and **Decodings** of users and items.
 
     Parameters
     ----------
     df : pandas.core.frame.DataFrame
-        dataframe of shape (m,3) with columns in the order - user, item, rating
-    shuffle : boolean
-        boolean to determine should the dataset be shuffled after encoding (default True)
-    split : boolean
-        boolean to determine if the dataset should be split into train and test set (default True)
-    test_size : float
-        size of test split (default 0.2)
-    random_state : integer
-        seed variable, useful for reproducing results (default None)
+        Dataframe of shape `(m,3)` with columns in the order - `user`, `item`, `rating`.
+    shuffle : boolean, optional
+        Boolean to determine should the dataset be shuffled after encoding (default is `True`).
+    split : boolean, optional
+        Boolean to determine if the dataset should be split into train and test set (default is `True`).
+    test_size : float, optional
+        Size of test split (default is `0.2`).
+    random_state : integer, optional
+        Seed variable, useful for reproducing results (default is `None`).
 
     Returns
     -------
     dataset, user_item_encodings : tuple
-            dataset contains tuple of train and test variables if shuffle = True
-            dataset - (x_train, y_train), (x_test, y_test)
-            user_item_encodings - (user_to_encoded, encoded_to_user,item_to_encoded, encoded_to_item)
+        Dataset contains tuple of train and test variables if `shuffle = True`.
+
+        **dataset**
+
+            (x_train, y_train), (x_test, y_test).
+
+        **user_item_encodings**
+
+            (user_to_encoded, encoded_to_user,item_to_encoded, encoded_to_item).
     """
 
     # Get unique ids
@@ -77,34 +84,35 @@ def preprocess_and_split(df, shuffle=True, split=True, test_size=0.2, random_sta
 
 
 def cross_validate(model, X, y, folds=5, epochs=5, batch_size=32, callbacks=None, shuffle=False, random_state=None):
-    """Performs K-Fold cross validation on data
+    """Performs K-Fold cross validation on data.
 
     Parameters
     ----------
     model : tf.keras.Model
-        a compiled model with appropriate metrics to keep track of
+        A compiled model with appropriate metrics to keep track of.
     X : numpy.ndarray
-        numpy array of shape (m, 2) of user-item pairs
+        Numpy array of shape `(m, 2)` of user-item pairs.
     y : numpy.ndarray
-        numpy array of shape (m,) of target rating
-    folds : integer
-        number of splits for K Fold (default 5)
-    epochs : integer
-        epochs to fit the model (default 10)
-    batch_size : integer
-        batch_size to be passed in while fitting (default 32)
-    callbacks : list
-        list of callbacks to be passed in while fitting (default None)
-    shuffle : boolean
-        shuffle before splitting into batches or not (default False)
-    random_state : integer
-        seed variable, only useful if shuffle = True (default None)
+        Numpy array of shape `(m,)` of target rating.
+    folds : integer, optional
+        Number of splits for K Fold (default is `5`).
+    epochs : integer, optional
+        Epochs to fit the model (default is `10`).
+    batch_size : integer, optional
+        Batch_size to be passed in while fitting (default is `32`).
+    callbacks : list, optional
+        List of callbacks to be passed in while fitting (default `None`).
+    shuffle : boolean, optional
+        Shuffle before splitting into batches or not (default `False`).
+    random_state : integer, optional
+        Seed variable, only useful if `shuffle = True` (default `None`).
 
     Returns
     -------
     numpy.ndarray
-        numpy array of shape (folds, 1(loss) + no_of_metrics)
-        contains validation scores evaluated for each fold
+        Numpy array of shape `(folds, 1(loss) + no_of_metrics)`.
+
+        Contains validation scores evaluated for each fold.
     """
 
     # Initalize KFold
@@ -131,7 +139,7 @@ def cross_validate(model, X, y, folds=5, epochs=5, batch_size=32, callbacks=None
         history = model.fit(
             X[train], y[train], batch_size=batch_size, epochs=epochs, callbacks=callbacks)
         print(f'\nEvaluating on Fold {i}')
-        fold_score = model.evaluate(X[val], y[val])
+        fold_score = history.model.evaluate(X[val], y[val])
         all_metrics.append(fold_score)
 
         if folds != i:

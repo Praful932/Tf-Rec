@@ -1,86 +1,57 @@
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 
 class SVDpp(keras.Model):
-    """
-    SVD++ - An extension of the SVD Model employing implicit Feedback as originally
-    demonstrated in the paper "Factorization meets the neighborhood: a multifaceted collaborative filtering model".
-    Link - https://dl.acm.org/doi/10.1145/1401890.1401944 Section 4
+    """ **SVD++** - An extension of the SVD Model employing implicit feedback.
 
-    - Base - keras.Model
+    As originally demonstrated in the paper -
+    Factorization meets the neighborhood: a multifaceted collaborative filtering model
+    https://dl.acm.org/doi/10.1145/1401890.1401944 Section 4.
 
     ...
 
     Attributes
     -----------
     n_users : int
-        total number of users in the dataset
+        Total number of users in the dataset.
     n_items : int
-        total number of items in the dataset
+        Total number of items in the dataset.
     global_mean : float
-        mean of ratings in the training set
-    embedding_dim : int
-        number of factors for user and item (default 50)
-    init_mean : float
-        mean of random initilization for embeddings (default 0)
-    init_std_dev : float
-        standard deviation of random initilization for embeddings (default 0.1)
-    reg_all : float
-        l2 regularization factor for all trainable variables (default 0.0001)
-    reg_user_embed : float
-        l2 regularization factor for user embedding (default reg_all)
-    reg_item_embed : float
-        l2 regularization factor for item embedding (default reg_all)
-    reg_user_bias : float
-        l2 regularization factor for user bias (default reg_all)
-    reg_item_bias : float
-        l2 regularization factor for item bias (default reg_all)
-    random_state : integer
-        seed variable, useful for reproducing results (default None)
+        Mean of ratings in the training set.
+    embedding_dim : int, optional
+        Number of factors for user and item (default is `50`).
+    init_mean : float, optional
+        Mean of random initilization for embeddings (default is `0`).
+    init_std_dev : float, optional
+        Standard deviation of random initilization for embeddings (default is `0.1`).
+    reg_all : float, optional
+        L2 regularization factor for all trainable variables (default is `0.0001`).
+    reg_user_embed : float, optional
+        L2 regularization factor for user embedding (default is `reg_all`).
+    reg_item_embed : float, optional
+        L2 regularization factor for item embedding (default is `reg_all`).
+    reg_user_bias : float, optional
+        L2 regularization factor for user bias (default is `reg_all`).
+    reg_item_bias : float, optional
+        L2 regularization factor for item bias (default is `reg_all`).
+    random_state : integer, optional
+        Seed variable, useful for reproducing results (default is `None`).
 
-    Methods
-    -------
-    implicit_feedback(X)
-       creates a class variable used for implicit feedback
-       needs to be called before calling fit() method
+    Raises
+    ------
+    AttributeError
+        If the method `implicit_feedback(X)` is not called before calling `fit()`.
     """
 
     def __init__(self, n_users, n_items, global_mean, embedding_dim=50, init_mean=0, init_std_dev=0.1, reg_all=0.0001,
                  reg_user_embed=None, reg_item_embed=None, reg_impl_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
-        """
-        Parameters:
-        -----------
-        n_users : int
-            total number of users in the dataset
-        n_items : int
-            total number of items in the dataset
-        global_mean : float
-            mean of ratings in the training set
-        embedding_dim : int
-            number of factors for user and item (default 50)
-        init_mean : float
-            mean of random initilization for embeddings (default 0)
-        init_std_dev : float
-            standard deviation of random initilization for embeddings (default 0.1)
-        reg_all : float
-            l2 regularization factor for all trainable variables (default 0.0001)
-        reg_user_embed : float
-            l2 regularization factor for user embedding (default reg_all)
-        reg_item_embed : float
-            l2 regularization factor for item embedding (default reg_all)
-        reg_user_bias : float
-            l2 regularization factor for user bias (default reg_all)
-        reg_item_bias : float
-            l2 regularization factor for item bias (default reg_all)
-        random_state : integer
-            seed variable, useful for reproducing results (default None)
-        """
 
         super().__init__(**kwargs)
         self.n_users = n_users
         self.n_items = n_items
-        self.global_mean = global_mean
+        self.global_mean = global_mean.astype(np.float32)
         self.embedding_dim = embedding_dim
         self.init_mean = init_mean
         self.init_std_dev = init_std_dev
@@ -125,14 +96,19 @@ class SVDpp(keras.Model):
         )
 
     def implicit_feedback(self, X):
-        """Maps a user to rated items for implicit feedback
+        """Maps a user to rated items for implicit feedback.
 
         Needs to be called before fitting the Model.
 
         Parameters
-        ---------
-        X : m by 2 numpy array
-          User item Table
+        ----------
+        X : numpy.ndarray
+            User Item table.
+
+        Raises
+        ------
+        AttributeError
+            If this is not called before calling `fit()`.
         """
 
         self.user_rated_items = [[] for _ in range(self.n_users)]
@@ -144,7 +120,7 @@ class SVDpp(keras.Model):
             self.user_rated_items, dtype=tf.int32)
 
     def call(self, inputs):
-        """Forward pass of input batch"""
+        """Forward pass of input batch."""
         # Separate Inputs
         user, item = inputs[:, 0], inputs[:, 1]
 
