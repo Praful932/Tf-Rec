@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>tfrec.models API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>tfrec.models</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from tfrec.models.svd import SVD
+from tfrec.models.svdpp import SVDpp
+
+__all__ = [
+    &#39;SVD&#39;,
+    &#39;SVDpp&#39;,
+]</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="tfrec.models.svd" href="svd.html">tfrec.models.svd</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="tfrec.models.svdpp" href="svdpp.html">tfrec.models.svdpp</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="tfrec.models.SVD"><code class="flex name class">
+<span>class <span class="ident">SVD</span></span>
+<span>(</span><span>n_users, n_items, global_mean, embedding_dim=50, biased=True, init_mean=0, init_std_dev=0.1, reg_all=0.0001, reg_user_embed=None, reg_item_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong>SVD</strong> - A Matrix Factorization Algorithm for Collaborative Filtering.</p>
+<p>As demonstrated by Simon Funk in his
+blogpost <a href="https://sifter.org/~simon/journal/20061211.html.">https://sifter.org/~simon/journal/20061211.html.</a></p>
+<p>&hellip;</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>n_users</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of users in the dataset.</dd>
+<dt><strong><code>n_items</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of items in the dataset.</dd>
+<dt><strong><code>global_mean</code></strong> :&ensp;<code>float</code></dt>
+<dd>Mean of ratings in the training set.</dd>
+<dt><strong><code>embedding_dim</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of factors for user and item (default is <code>50</code>).</dd>
+<dt><strong><code>biased</code></strong> :&ensp;<code>boolean</code>, optional</dt>
+<dd>Whether bias should be used or not (default is <code>True</code>).</dd>
+<dt><strong><code>init_mean</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Mean of random initilization for embeddings (default is <code>0</code>).</dd>
+<dt><strong><code>init_std_dev</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Standard deviation of random initilization for embeddings (default is <code>0.1</code>).</dd>
+<dt><strong><code>reg_all</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for all trainable variables (default is <code>0.0001</code>).</dd>
+<dt><strong><code>reg_user_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_user_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Seed variable, useful for reproducing results (default is <code>None</code>).</dd>
+</dl>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_users</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of users in the dataset.</dd>
+<dt><strong><code>n_items</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of items in the dataset.</dd>
+<dt><strong><code>global_mean</code></strong> :&ensp;<code>float</code></dt>
+<dd>Mean of ratings in the training set.</dd>
+<dt><strong><code>embedding_dim</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of factors for user and item (default is <code>50</code>).</dd>
+<dt><strong><code>biased</code></strong> :&ensp;<code>boolean</code>, optional</dt>
+<dd>Whether bias should be used or not (default is <code>True</code>).</dd>
+<dt><strong><code>init_mean</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Mean of random initilization for embeddings (default is <code>0</code>).</dd>
+<dt><strong><code>init_std_dev</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Standard deviation of random initilization for embeddings (default is <code>0.1</code>).</dd>
+<dt><strong><code>reg_all</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for all trainable variables (default is <code>0.0001</code>).</dd>
+<dt><strong><code>reg_user_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_user_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Seed variable, useful for reproducing results (default is <code>None</code>).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SVD(keras.Model):
+    &#34;&#34;&#34; **SVD** - A Matrix Factorization Algorithm for Collaborative Filtering.
+
+    As demonstrated by Simon Funk in his
+    blogpost https://sifter.org/~simon/journal/20061211.html.
+
+    ...
+
+    Attributes
+    -----------
+    n_users : int
+        Total number of users in the dataset.
+    n_items : int
+        Total number of items in the dataset.
+    global_mean : float
+        Mean of ratings in the training set.
+    embedding_dim : int, optional
+        Number of factors for user and item (default is `50`).
+    biased : boolean, optional
+        Whether bias should be used or not (default is `True`).
+    init_mean : float, optional
+        Mean of random initilization for embeddings (default is `0`).
+    init_std_dev : float, optional
+        Standard deviation of random initilization for embeddings (default is `0.1`).
+    reg_all : float, optional
+        L2 regularization factor for all trainable variables (default is `0.0001`).
+    reg_user_embed : float, optional
+        L2 regularization factor for user embedding (default is `reg_all`).
+    reg_item_embed : float, optional
+        L2 regularization factor for item embedding (default is `reg_all`).
+    reg_user_bias : float, optional
+        L2 regularization factor for user bias (default is `reg_all`).
+    reg_item_bias : float, optional
+        L2 regularization factor for item bias (default is `reg_all`).
+    random_state : integer, optional
+        Seed variable, useful for reproducing results (default is `None`).
+    &#34;&#34;&#34;
+
+    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, biased=True,
+                 init_mean=0, init_std_dev=0.1, reg_all=0.0001, reg_user_embed=None,
+                 reg_item_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+        &#34;&#34;&#34;
+        Parameters
+        -----------
+        n_users : int
+            Total number of users in the dataset.
+        n_items : int
+            Total number of items in the dataset.
+        global_mean : float
+            Mean of ratings in the training set.
+        embedding_dim : int, optional
+            Number of factors for user and item (default is `50`).
+        biased : boolean, optional
+            Whether bias should be used or not (default is `True`).
+        init_mean : float, optional
+            Mean of random initilization for embeddings (default is `0`).
+        init_std_dev : float, optional
+            Standard deviation of random initilization for embeddings (default is `0.1`).
+        reg_all : float, optional
+            L2 regularization factor for all trainable variables (default is `0.0001`).
+        reg_user_embed : float, optional
+            L2 regularization factor for user embedding (default is `reg_all`).
+        reg_item_embed : float, optional
+            L2 regularization factor for item embedding (default is `reg_all`).
+        reg_user_bias : float, optional
+            L2 regularization factor for user bias (default is `reg_all`).
+        reg_item_bias : float, optional
+            L2 regularization factor for item bias (default is `reg_all`).
+        random_state : integer, optional
+            Seed variable, useful for reproducing results (default is `None`).
+        &#34;&#34;&#34;
+
+        super().__init__(**kwargs)
+        self.n_users = n_users
+        self.n_items = n_items
+        self.global_mean = global_mean.astype(np.float32)
+        self.embedding_dim = embedding_dim
+        self.biased = biased
+        self.init_mean = init_mean
+        self.init_std_dev = init_std_dev
+        self.reg_all = reg_all
+        self.reg_user_embed = reg_all if not reg_user_embed else reg_user_embed
+        self.reg_item_embed = reg_all if not reg_item_embed else reg_item_embed
+        self.reg_user_bias = reg_all if not reg_user_bias else reg_user_bias
+        self.reg_item_bias = reg_all if not reg_item_bias else reg_item_bias
+        self.random_state = random_state
+
+        self.user_embedding = keras.layers.Embedding(
+            input_dim=self.n_users, output_dim=self.embedding_dim,
+            embeddings_initializer=tf.keras.initializers.RandomNormal(
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
+            embeddings_regularizer=tf.keras.regularizers.L2(
+                self.reg_user_embed)
+        )
+        self.item_embedding = keras.layers.Embedding(
+            input_dim=self.n_items, output_dim=self.embedding_dim,
+            embeddings_initializer=tf.keras.initializers.RandomNormal(
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
+            embeddings_regularizer=tf.keras.regularizers.L2(
+                self.reg_item_embed)
+        )
+        if self.biased:
+            self.user_bias = keras.layers.Embedding(
+                input_dim=self.n_users, output_dim=1,
+                embeddings_initializer=tf.keras.initializers.Zeros(),
+                embeddings_regularizer=tf.keras.regularizers.L2(
+                    self.reg_user_bias)
+            )
+            self.item_bias = keras.layers.Embedding(
+                input_dim=self.n_items, output_dim=1,
+                embeddings_initializer=tf.keras.initializers.Zeros(),
+                embeddings_regularizer=tf.keras.regularizers.L2(
+                    self.reg_item_bias)
+            )
+
+    def call(self, inputs):
+        &#34;&#34;&#34;Forward pass of input batch.&#34;&#34;&#34;
+        # Separate Inputs
+        user, item = inputs[:, 0], inputs[:, 1]
+
+        # Dot Product
+        user_embed, item_embed = self.user_embedding(
+            user), self.item_embedding(item)
+        rating = tf.math.reduce_sum(tf.multiply(
+            user_embed, item_embed), 1, keepdims=True)
+
+        # Add global mean and bias if self.bias = True
+        if self.biased:
+            user_bias, item_bias = self.user_bias(user), self.item_bias(item)
+            total_bias = tf.math.add(
+                self.global_mean, tf.math.add(user_bias, item_bias))
+            rating = tf.math.add(rating, total_bias)
+
+        return rating</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>tensorflow.python.keras.engine.training.Model</li>
+<li>tensorflow.python.keras.engine.base_layer.Layer</li>
+<li>tensorflow.python.module.module.Module</li>
+<li>tensorflow.python.training.tracking.tracking.AutoTrackable</li>
+<li>tensorflow.python.training.tracking.base.Trackable</li>
+<li>tensorflow.python.keras.utils.version_utils.LayerVersionSelector</li>
+<li>tensorflow.python.keras.utils.version_utils.ModelVersionSelector</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="tfrec.models.SVD.call"><code class="name flex">
+<span>def <span class="ident">call</span></span>(<span>self, inputs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Forward pass of input batch.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def call(self, inputs):
+    &#34;&#34;&#34;Forward pass of input batch.&#34;&#34;&#34;
+    # Separate Inputs
+    user, item = inputs[:, 0], inputs[:, 1]
+
+    # Dot Product
+    user_embed, item_embed = self.user_embedding(
+        user), self.item_embedding(item)
+    rating = tf.math.reduce_sum(tf.multiply(
+        user_embed, item_embed), 1, keepdims=True)
+
+    # Add global mean and bias if self.bias = True
+    if self.biased:
+        user_bias, item_bias = self.user_bias(user), self.item_bias(item)
+        total_bias = tf.math.add(
+            self.global_mean, tf.math.add(user_bias, item_bias))
+        rating = tf.math.add(rating, total_bias)
+
+    return rating</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="tfrec.models.SVDpp"><code class="flex name class">
+<span>class <span class="ident">SVDpp</span></span>
+<span>(</span><span>n_users, n_items, global_mean, embedding_dim=50, init_mean=0, init_std_dev=0.1, reg_all=0.0001, reg_user_embed=None, reg_item_embed=None, reg_impl_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong>SVD++</strong> - An extension of the SVD Model employing implicit feedback.</p>
+<p>As originally demonstrated in the paper -
+Factorization meets the neighborhood: a multifaceted collaborative filtering model
+<a href="https://dl.acm.org/doi/10.1145/1401890.1401944">https://dl.acm.org/doi/10.1145/1401890.1401944</a> Section 4.</p>
+<p>&hellip;</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>n_users</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of users in the dataset.</dd>
+<dt><strong><code>n_items</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of items in the dataset.</dd>
+<dt><strong><code>global_mean</code></strong> :&ensp;<code>float</code></dt>
+<dd>Mean of ratings in the training set.</dd>
+<dt><strong><code>embedding_dim</code></strong> :&ensp;<code>int</code>, optional</dt>
+<dd>Number of factors for user and item (default is <code>50</code>).</dd>
+<dt><strong><code>init_mean</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Mean of random initilization for embeddings (default is <code>0</code>).</dd>
+<dt><strong><code>init_std_dev</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Standard deviation of random initilization for embeddings (default is <code>0.1</code>).</dd>
+<dt><strong><code>reg_all</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for all trainable variables (default is <code>0.0001</code>).</dd>
+<dt><strong><code>reg_user_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_embed</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item embedding (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_user_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for user bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>reg_item_bias</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>L2 regularization factor for item bias (default is <code>reg_all</code>).</dd>
+<dt><strong><code>random_state</code></strong> :&ensp;<code>integer</code>, optional</dt>
+<dd>Seed variable, useful for reproducing results (default is <code>None</code>).</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AttributeError</code></dt>
+<dd>If the method <code>implicit_feedback(X)</code> is not called before calling <code>fit()</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SVDpp(keras.Model):
+    &#34;&#34;&#34; **SVD++** - An extension of the SVD Model employing implicit feedback.
+
+    As originally demonstrated in the paper -
+    Factorization meets the neighborhood: a multifaceted collaborative filtering model
+    https://dl.acm.org/doi/10.1145/1401890.1401944 Section 4.
+
+    ...
+
+    Attributes
+    -----------
+    n_users : int
+        Total number of users in the dataset.
+    n_items : int
+        Total number of items in the dataset.
+    global_mean : float
+        Mean of ratings in the training set.
+    embedding_dim : int, optional
+        Number of factors for user and item (default is `50`).
+    init_mean : float, optional
+        Mean of random initilization for embeddings (default is `0`).
+    init_std_dev : float, optional
+        Standard deviation of random initilization for embeddings (default is `0.1`).
+    reg_all : float, optional
+        L2 regularization factor for all trainable variables (default is `0.0001`).
+    reg_user_embed : float, optional
+        L2 regularization factor for user embedding (default is `reg_all`).
+    reg_item_embed : float, optional
+        L2 regularization factor for item embedding (default is `reg_all`).
+    reg_user_bias : float, optional
+        L2 regularization factor for user bias (default is `reg_all`).
+    reg_item_bias : float, optional
+        L2 regularization factor for item bias (default is `reg_all`).
+    random_state : integer, optional
+        Seed variable, useful for reproducing results (default is `None`).
+
+    Raises
+    ------
+    AttributeError
+        If the method `implicit_feedback(X)` is not called before calling `fit()`.
+    &#34;&#34;&#34;
+
+    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, init_mean=0, init_std_dev=0.1, reg_all=0.0001,
+                 reg_user_embed=None, reg_item_embed=None, reg_impl_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+
+        super().__init__(**kwargs)
+        self.n_users = n_users
+        self.n_items = n_items
+        self.global_mean = global_mean.astype(np.float32)
+        self.embedding_dim = embedding_dim
+        self.init_mean = init_mean
+        self.init_std_dev = init_std_dev
+        self.reg_all = reg_all
+        self.reg_user_embed = reg_all if not reg_user_embed else reg_user_embed
+        self.reg_item_embed = reg_all if not reg_item_embed else reg_item_embed
+        self.reg_impl_embed = reg_all if not reg_impl_embed else reg_impl_embed
+        self.reg_user_bias = reg_all if not reg_user_bias else reg_user_bias
+        self.reg_item_bias = reg_all if not reg_item_bias else reg_item_bias
+        self.random_state = random_state
+
+        self.user_embedding = keras.layers.Embedding(
+            input_dim=self.n_users, output_dim=self.embedding_dim,
+            embeddings_initializer=tf.keras.initializers.RandomNormal(
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
+            embeddings_regularizer=tf.keras.regularizers.L2(
+                self.reg_user_embed)
+        )
+        self.item_embedding = keras.layers.Embedding(
+            input_dim=self.n_items, output_dim=self.embedding_dim,
+            embeddings_initializer=tf.keras.initializers.RandomNormal(
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
+            embeddings_regularizer=tf.keras.regularizers.L2(
+                self.reg_item_embed)
+        )
+        self.item_implicit_embedding = keras.layers.Embedding(
+            input_dim=self.n_items, output_dim=self.embedding_dim,
+            embeddings_initializer=tf.keras.initializers.RandomNormal(
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
+            embeddings_regularizer=tf.keras.regularizers.L2(
+                self.reg_impl_embed)
+        )
+        self.user_bias = keras.layers.Embedding(
+            input_dim=self.n_users, output_dim=1,
+            embeddings_initializer=tf.keras.initializers.Zeros(),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_bias)
+        )
+        self.item_bias = keras.layers.Embedding(
+            input_dim=self.n_items, output_dim=1,
+            embeddings_initializer=tf.keras.initializers.Zeros(),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_bias)
+        )
+
+    def implicit_feedback(self, X):
+        &#34;&#34;&#34;Maps a user to rated items for implicit feedback.
+
+        Needs to be called before fitting the Model.
+
+        Parameters
+        ----------
+        X : numpy.ndarray
+            User Item table.
+
+        Raises
+        ------
+        AttributeError
+            If this is not called before calling `fit()`.
+        &#34;&#34;&#34;
+
+        self.user_rated_items = [[] for _ in range(self.n_users)]
+        for u, i in zip(X[:, 0], X[:, 1]):
+            self.user_rated_items[u].append(i)
+
+        # Converts to ragged tensor to be used during forward pass
+        self.user_rated_items = tf.ragged.constant(
+            self.user_rated_items, dtype=tf.int32)
+
+    def call(self, inputs):
+        &#34;&#34;&#34;Forward pass of input batch.&#34;&#34;&#34;
+        # Separate Inputs
+        user, item = inputs[:, 0], inputs[:, 1]
+
+        # Get Embeddings
+        user_embed, item_embed = self.user_embedding(
+            user), self.item_embedding(item)
+        user_bias, item_bias = self.user_bias(user), self.item_bias(item)
+
+        # Gather Rated Items &amp; their lengths
+        rated_items = tf.gather(self.user_rated_items, user)
+        item_lengths = tf.cast(
+            tf.map_fn(tf.shape, rated_items).to_tensor(), dtype=tf.float32)
+
+        # Calculate Implicit Feedback
+        implicit_embed = self.item_implicit_embedding(rated_items)
+        implicit_embed_sum = tf.reduce_sum(implicit_embed, axis=1)
+        moderated_implicit_embed = tf.math.divide(
+            implicit_embed_sum, tf.math.sqrt(item_lengths))
+
+        # Calculate Final Rating with bias
+        total_user_embed = tf.math.add(user_embed, moderated_implicit_embed)
+        rating = tf.math.reduce_sum(tf.multiply(
+            total_user_embed, item_embed), 1, keepdims=True)
+        total_bias = tf.math.add(
+            self.global_mean, tf.math.add(user_bias, item_bias))
+        rating = tf.math.add(rating, total_bias)
+
+        return rating</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>tensorflow.python.keras.engine.training.Model</li>
+<li>tensorflow.python.keras.engine.base_layer.Layer</li>
+<li>tensorflow.python.module.module.Module</li>
+<li>tensorflow.python.training.tracking.tracking.AutoTrackable</li>
+<li>tensorflow.python.training.tracking.base.Trackable</li>
+<li>tensorflow.python.keras.utils.version_utils.LayerVersionSelector</li>
+<li>tensorflow.python.keras.utils.version_utils.ModelVersionSelector</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="tfrec.models.SVDpp.call"><code class="name flex">
+<span>def <span class="ident">call</span></span>(<span>self, inputs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Forward pass of input batch.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def call(self, inputs):
+    &#34;&#34;&#34;Forward pass of input batch.&#34;&#34;&#34;
+    # Separate Inputs
+    user, item = inputs[:, 0], inputs[:, 1]
+
+    # Get Embeddings
+    user_embed, item_embed = self.user_embedding(
+        user), self.item_embedding(item)
+    user_bias, item_bias = self.user_bias(user), self.item_bias(item)
+
+    # Gather Rated Items &amp; their lengths
+    rated_items = tf.gather(self.user_rated_items, user)
+    item_lengths = tf.cast(
+        tf.map_fn(tf.shape, rated_items).to_tensor(), dtype=tf.float32)
+
+    # Calculate Implicit Feedback
+    implicit_embed = self.item_implicit_embedding(rated_items)
+    implicit_embed_sum = tf.reduce_sum(implicit_embed, axis=1)
+    moderated_implicit_embed = tf.math.divide(
+        implicit_embed_sum, tf.math.sqrt(item_lengths))
+
+    # Calculate Final Rating with bias
+    total_user_embed = tf.math.add(user_embed, moderated_implicit_embed)
+    rating = tf.math.reduce_sum(tf.multiply(
+        total_user_embed, item_embed), 1, keepdims=True)
+    total_bias = tf.math.add(
+        self.global_mean, tf.math.add(user_bias, item_bias))
+    rating = tf.math.add(rating, total_bias)
+
+    return rating</code></pre>
+</details>
+</dd>
+<dt id="tfrec.models.SVDpp.implicit_feedback"><code class="name flex">
+<span>def <span class="ident">implicit_feedback</span></span>(<span>self, X)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Maps a user to rated items for implicit feedback.</p>
+<p>Needs to be called before fitting the Model.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>X</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>User Item table.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AttributeError</code></dt>
+<dd>If this is not called before calling <code>fit()</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def implicit_feedback(self, X):
+    &#34;&#34;&#34;Maps a user to rated items for implicit feedback.
+
+    Needs to be called before fitting the Model.
+
+    Parameters
+    ----------
+    X : numpy.ndarray
+        User Item table.
+
+    Raises
+    ------
+    AttributeError
+        If this is not called before calling `fit()`.
+    &#34;&#34;&#34;
+
+    self.user_rated_items = [[] for _ in range(self.n_users)]
+    for u, i in zip(X[:, 0], X[:, 1]):
+        self.user_rated_items[u].append(i)
+
+    # Converts to ragged tensor to be used during forward pass
+    self.user_rated_items = tf.ragged.constant(
+        self.user_rated_items, dtype=tf.int32)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="tfrec" href="../index.html">tfrec</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="tfrec.models.svd" href="svd.html">tfrec.models.svd</a></code></li>
+<li><code><a title="tfrec.models.svdpp" href="svdpp.html">tfrec.models.svdpp</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="tfrec.models.SVD" href="#tfrec.models.SVD">SVD</a></code></h4>
+<ul class="">
+<li><code><a title="tfrec.models.SVD.call" href="#tfrec.models.SVD.call">call</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="tfrec.models.SVDpp" href="#tfrec.models.SVDpp">SVDpp</a></code></h4>
+<ul class="">
+<li><code><a title="tfrec.models.SVDpp.call" href="#tfrec.models.SVDpp.call">call</a></code></li>
+<li><code><a title="tfrec.models.SVDpp.implicit_feedback" href="#tfrec.models.SVDpp.implicit_feedback">implicit_feedback</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
