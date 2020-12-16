@@ -142,8 +142,8 @@ def cross_validate(model, X, y, folds=5, epochs=5, batch_size=32, callbacks=None
         fold_score = history.model.evaluate(X[val], y[val])
         all_metrics.append(fold_score)
 
-        if folds != i:
-            model.set_weights(weights)
+        # Reset Weights
+        model.set_weights(weights)
 
         i += 1
 
@@ -152,4 +152,4 @@ def cross_validate(model, X, y, folds=5, epochs=5, batch_size=32, callbacks=None
     for i, metric in enumerate(model.metrics_names):
         print(f'Mean {metric.capitalize()} : {np.mean(all_metrics.T[i])}')
 
-    return all_metrics, model
+    return all_metrics

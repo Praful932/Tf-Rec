@@ -51,7 +51,7 @@ class SVDpp(keras.Model):
         super().__init__(**kwargs)
         self.n_users = n_users
         self.n_items = n_items
-        self.global_mean = global_mean.astype(np.float32)
+        self.global_mean = np.float32(global_mean)
         self.embedding_dim = embedding_dim
         self.init_mean = init_mean
         self.init_std_dev = init_std_dev
