@@ -4,16 +4,16 @@
 
 # Contents
 
-- Why Tf-Rec? 🧐
-- Installation ⚡
-- Quick Start & Docs 📝
-  - API Docs
-  - SVD Example
-  - SVD++ Example
-  - KFold Cross Validation Example
-- Supported Algorithms 🎯
-- Benchmark 🔥
-- Contribute 😇
+- [Why Tf-Rec?](#user-content-why-tf-rec-) 🧐
+- [Installation](#user-content-installation-) ⚡
+- [Quick Start & Docs](#user-content-quick-start--documentation-) 📝
+  - [API Docs](#user-content-api-docs)
+  - [SVD Example](#user-content-svd-example)
+  - [SVD++ Example](#user-content-svd-example-1)
+  - [KFold Cross Validation Example](#user-content-kfold-cross-validation-example)
+- [Supported Algorithms](#user-content-supported-algorithms-) 🎯
+- [Benchmark](#user-content-benchmark-) 🔥
+- [Contribute](#user-content-contribute-) 😇
 
 ### Why Tf-Rec? 🧐
 
@@ -27,11 +27,11 @@ The package is available on PyPi:
 
 ### Quick Start & Documentation 📝
 
-**API Docs**
+#### API Docs
 
 - [API Documentation](https://tfrec.netlify.app/)
 
-**SVD Example**
+#### SVD Example
 
 ```python
 from tfrec.models import SVD
@@ -56,7 +56,7 @@ model.fit(x_train, y_train)
 2521/2521 [==============================] - 11s 4ms/step - loss: 0.9963
 ```
 
-**SVD++ Example**
+#### SVD++ Example
 
 ```python
 from tfrec.models import SVDpp
@@ -73,7 +73,7 @@ model.fit(x_train, y_train)
 2521/2521 [==============================] - 49s 20ms/step - loss: 1.0332
 ```
 
-**KFold Cross Validation Example**
+#### KFold Cross Validation Example
 
 ```python
 from tfrec.utils import cross_validate
