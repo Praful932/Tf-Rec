@@ -17,7 +17,7 @@
 
 ### Why Tf-Rec? 🧐
 
-There are several open source libraries which implement popular recommender algorithms in, infact this library is inspired by them - **Surprise** and **Funk-SVD**. However, there is bottleneck in training time, when the training data is huge. This can be solved by using ready frameworks like **Tensorflow 2** & **Keras** which support running computations on GPU thus delivering speed and higher throughput. Building on top of such frameworks also provide us with off the shelf capabilities, using different optimizers, Data API, exporting to Tflite and much more. Tfrec provides _ready implementations of algorithms_ which can be directly used with few lines of Tensorflow Code.
+There are several open source libraries which implement popular recommender algorithms in, infact this library is inspired by them - **Surprise** and **Funk-SVD**. However, there is bottleneck in training time, when the training data is huge. This can be solved by using ready frameworks like **Tensorflow 2** & **Keras** which support running computations on GPU thus delivering speed and higher throughput. Building on top of such frameworks also provide us with off the shelf capabilities such as using different optimizers, Data API, exporting the model to other platforms and much more. Tfrec provides _ready implementations of algorithms_ which can be directly used with few lines of Tensorflow Code.
 
 ### Installation ⚡
 
@@ -62,10 +62,10 @@ model.fit(x_train, y_train)
 from tfrec.models import SVDpp
 
 model = SVDpp(num_users, num_movies, global_mean)
-model.compile(loss = 'mean_squared_error', optimizer = 'adam')
-
 # Needs to be called before fitting
 model.implicit_feedback(x_train)
+model.compile(loss = 'mean_squared_error', optimizer = 'adam')
+
 model.fit(x_train, y_train)
 ```
 
@@ -92,7 +92,7 @@ Mean Root_mean_squared_error : 0.8578477501869202
 
 Currently the library supports these algorithms:
 
-- **SVD** - Despite the Name, it is different from the Matrix Eigen Decomposition of Assymmetric Matrices. In a gist, it approximates a vector for each user and each item. The vector contains latent factors which signify for brevity sake, if the item is a movie the movie vector would represent - how much the movie contains action or romance likewise. Similarly for the user.
+- **SVD** - Despite the Name, it is different from the Eigen Decomposition of Assymmetric Matrices. In a gist, it approximates a vector for each user and each item. The vector contains latent factors which signify for brevity sake, if the item is a movie the movie vector would represent - how much the movie contains action or romance likewise. Similarly for the user.
   The predicted rating is given by: <br />
   ![](https://latex.codecogs.com/png.latex?\hat{r}_{u,&space;i}&space;=&space;\bar{r}&space;+&space;b_{u}&space;+&space;b_{i}&space;+&space;\sum_{f=1}^{F}&space;p_{u,&space;f}&space;*&space;q_{i,&space;f})
 
