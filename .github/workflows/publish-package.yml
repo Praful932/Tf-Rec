@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-  
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -30,7 +29,7 @@ jobs:
         VERSION: ${GITHUB_REF#refs/tags/}
       
     - name: Update package version
-      run : python .github/workflows/add_version.py $VERSION
+      run: python .github/workflows/add_version.py $VERSION
       
     - name: Version commit
       run: |
