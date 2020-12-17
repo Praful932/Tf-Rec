@@ -1,0 +1,39 @@
+name: Publish to TestPypi
+
+# Controls when the action will run. 
+on:
+  release:
+    types: [created]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+  
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+      
+    - name: Get package version
+      env:
+        VERSION: ${GITHUB_REF#refs/tags/}
+      
+    - name: Update package version
+      run : python .github/workflows/add_version.py $VERSION
+      
+    - name: Version commit
+      run: |
+          git remote set-url origin ${{ secrets.ssh }}
+          git status
+          cat setup.py
