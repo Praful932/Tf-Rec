@@ -23,6 +23,8 @@ jobs:
       
     - name: Version commit
       run: |
-          git remote set-url origin ${{ secrets.SSH }}
-          git status
-
+          run: |
+          git config --global user.name ${{ secrets.USERNAME }}
+          git config --global user.email ${{ secrets.EMAIL }}
+          git commit -am "Test Package version"
+          git push origin main
