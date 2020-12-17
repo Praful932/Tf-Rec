@@ -15,12 +15,14 @@ jobs:
         python-version: '3.8'
       
     - name: Update package version
-      run: python .github/workflows/add_version.py $VERSION
+      run: |
+          python .github/workflows/add_version.py $VERSION
+          cat setup.py
       env:
         VERSION: ${GITHUB_REF#refs/tags/}
       
     - name: Version commit
       run: |
-          git remote set-url origin ${{ secrets.ssh }}
+          git remote set-url origin ${{ secrets.SSH }}
           git status
-          cat setup.py
+
