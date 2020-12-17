@@ -19,4 +19,28 @@ jobs:
       run: |
           python .github/workflows/add_version.py ${{ github.event.release.tag_name }}
           cat setup.py
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+        
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.TEST_PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
+        
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v5
+      with:
+        author_name: ${{ secrets.USERNAME }}
+        author_email: ${{ secrets.EMAIL }}
+        message: 'Test Package Version ${{ github.event.release.tag_name }} Published'
+        add: '-A'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    
