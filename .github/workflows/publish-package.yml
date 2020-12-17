@@ -2,15 +2,13 @@ name: Upload Python Package
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set env
-      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
       
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -19,6 +17,6 @@ jobs:
       
     - name: Update package version
       run: |
-          python .github/workflows/add_version.py $RELEASE_VERSION
+          python .github/workflows/add_version.py ${{ github.event.release.tag_name }}
           cat setup.py
 
