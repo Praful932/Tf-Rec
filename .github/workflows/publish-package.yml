@@ -39,11 +39,6 @@ jobs:
         git config --local user.name "${{ secrets.USERNAME }}"
         git add setup.py
         git commit -m "Test Published ${{ github.event.release.tag_name }}"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
-        force: true
+        git push origin main --force
 
     
