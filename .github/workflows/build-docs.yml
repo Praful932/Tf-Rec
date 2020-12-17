@@ -18,23 +18,21 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.8']
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        
-        with:
-          python-version: '3.8'
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        # Semantic version range syntax or exact version of a Python version
+        python-version: '3.8'
 
-      - name: Install package
-        run: pip install -e .
+    - name: Install package
+      run: pip install -e .
 
       # Runs a set of commands using the runners shell
-      - name: Build Documentation
-        run: |
-          pip install pdoc3
-          pdoc --html tfrec
+    - name: Build Documentation
+      run: |
+        pip install pdoc3
+        pdoc --html tfrec
