@@ -31,7 +31,7 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+        twine upload --repository testpypi dist/*
         
     - name: Commit changes
       uses: EndBug/add-and-commit@v5
