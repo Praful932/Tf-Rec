@@ -34,11 +34,13 @@ jobs:
         twine upload --repository testpypi dist/*
         
     - name: Commit files
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "${{ secrets.EMAIL }}"
         git config --local user.name "${{ secrets.USERNAME }}"
         git add setup.py
         git commit -m "Test Published ${{ github.event.release.tag_name }}"
-        git push origin main --force
-
+        git remote set-url --push origin https://${{ secrets.USERNAME }}:$GITHUB_TOKEN@github.com/${{ secrets.USERNAME }}/Tf-Rec
+        git push origin main
     
