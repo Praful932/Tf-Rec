@@ -33,14 +33,15 @@ jobs:
         python setup.py sdist bdist_wheel
         twine upload --repository testpypi dist/*
         
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v5
+    - name: Commit files
+      run: |
+        git config --local user.email "${{ secrets.EMAIL }}"
+        git config --local user.name "${{ secrets.USERNAME }}"
+        git commit -m "Test Published ${{ github.event.release.tag_name }}" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
-        author_name: ${{ secrets.USERNAME }}
-        author_email: ${{ secrets.EMAIL }}
-        message: 'Test Package Version ${{ github.event.release.tag_name }} Published'
-        add: '-A'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
 
     
