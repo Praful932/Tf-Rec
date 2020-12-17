@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Set env
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -16,15 +19,6 @@ jobs:
       
     - name: Update package version
       run: |
-          python .github/workflows/add_version.py $VERSION
+          python .github/workflows/add_version.py $RELEASE_VERSION
           cat setup.py
-      env:
-        VERSION: ${GITHUB_REF#refs/tags/}
-      
-    - name: Version commit
-      run: |
-          run: |
-          git config --global user.name ${{ secrets.USERNAME }}
-          git config --global user.email ${{ secrets.EMAIL }}
-          git commit -am "Test Package version"
-          git push origin main
+
