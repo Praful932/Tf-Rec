@@ -3,7 +3,7 @@ name: Build(Docs)
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on all branches
   push:
     branches: '*'
   pull_request:
@@ -32,7 +32,7 @@ jobs:
       run: pip install -e .
 
       # Runs a set of commands using the runners shell
-    - name: Build Documentation
+    - name: Build Documentation 📝
       run: |
         pip install pdoc3
         pdoc --html tfrec
