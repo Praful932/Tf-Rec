@@ -16,9 +16,7 @@ jobs:
         python-version: '3.8'
       
     - name: Update package version
-      run: |
-          python .github/workflows/add_version.py ${{ github.event.release.tag_name }}
-          cat setup.py
+      run: python .github/workflows/add_version.py ${{ github.event.release.tag_name }}
           
     - name: Install dependencies
       run: |
@@ -27,18 +25,18 @@ jobs:
         
     - name: Build and publish
       env:
-        TWINE_USERNAME: ${{ secrets.TEST_PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_PASSWORD }}
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload --repository testpypi dist/*
+        twine upload dist/*
         
     - name: Commit files
       run: |
         git config --local user.email "${{ secrets.EMAIL }}"
         git config --local user.name "${{ secrets.USERNAME }}"
         git add setup.py
-        git commit -m "Test Published ${{ github.event.release.tag_name }}"
+        git commit -m "Release v${{ github.event.release.tag_name }}"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

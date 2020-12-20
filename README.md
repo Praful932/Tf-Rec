@@ -13,7 +13,7 @@
   - [KFold Cross Validation Example](#user-content-kfold-cross-validation-example)
 - [Supported Algorithms](#user-content-supported-algorithms-) 🎯
 - [Benchmark](#user-content-benchmark-) 🔥
-- [Contribute](#user-content-contribute-) 😇
+- [Contribute](https://github.com/Praful932/Tf-Rec/blob/main/CONTRIBUTING.md) 😇
 
 ### Why Tf-Rec? 🧐
 
@@ -109,5 +109,3 @@ These are the 5-Fold Cross Validation Scores:
 | --------- | -------- | --------- | -------------- |
 | **SVD**   | 0.6701   | 0.8694    | < 3 sec        |
 | **SVD++** | 0.6838   | 0.8862    | < 45 sec       |
-
-### Contribute 😇
