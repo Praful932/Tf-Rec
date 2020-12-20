@@ -36,7 +36,7 @@ jobs:
         git config --local user.email "${{ secrets.EMAIL }}"
         git config --local user.name "${{ secrets.USERNAME }}"
         git add setup.py
-        git commit -m "Release v${{ github.event.release.tag_name }}"
+        git commit -m "Release ${{ github.event.release.tag_name }}"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
