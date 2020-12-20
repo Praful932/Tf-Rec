@@ -2,6 +2,14 @@
 
 **Tf-Rec** is a python💻 package for building⚒ Recommender Systems. It is built on top of **Keras** and **Tensorflow 2** to utilize _GPU Acceleration_ during training.
 
+[![PyPI version](https://badge.fury.io/py/tfrec.svg)](https://pypi.org/project/tfrec/)
+[![Python](https://img.shields.io/pypi/pyversions/tfrec.svg?style=flat)](https://badge.fury.io/py/tfrec)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Praful932/Tf-Rec/blob/master/CONTRIBUTING.md)
+<br>
+![Tests](https://github.com/Praful932/Tf-Rec/workflows/Tests/badge.svg)
+![Publish(Package)](https://github.com/Praful932/Tf-Rec/workflows/Publish(Package)/badge.svg)
+![Deploy(Docs)](https://github.com/Praful932/Tf-Rec/workflows/Deploy(Docs)/badge.svg)
+
 # Contents
 
 - [Why Tf-Rec?](#user-content-why-tf-rec-) 🧐
