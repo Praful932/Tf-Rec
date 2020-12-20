@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import pkg_resources
 
 # The below line is used by GH Actions and should not be modified or moved above or below
-version = '1.0.15'
+version = '1.0.0'
 
 readme_path = pkg_resources.resource_filename(__name__, "README.md")
 with open(readme_path, encoding="utf8") as f:
