@@ -1,4 +1,4 @@
-![Tf-rec](https://user-images.githubusercontent.com/45713796/101985944-ee9b5500-3cb0-11eb-882c-ae5145434b80.png)
+![Tf-rec](https://user-images.githubusercontent.com/45713796/102780477-00b97980-43bc-11eb-88c7-a2d62592c50d.png)
 
 **Tf-Rec** is a python💻 package for building⚒ Recommender Systems. It is built on top of **Keras** and **Tensorflow 2** to utilize _GPU Acceleration_ during training.
 
@@ -17,7 +17,7 @@
 
 ### Why Tf-Rec? 🧐
 
-There are several open source libraries which implement popular recommender algorithms in, infact this library is inspired by them - **Surprise** and **Funk-SVD**. However, there is bottleneck in training time, when the training data is huge. This can be solved by using ready frameworks like **Tensorflow 2** & **Keras** which support running computations on GPU thus delivering speed and higher throughput. Building on top of such frameworks also provide us with off the shelf capabilities such as using different optimizers, Data API, exporting the model to other platforms and much more. Tfrec provides _ready implementations of algorithms_ which can be directly used with few lines of Tensorflow Code.
+There are several open source libraries which implement popular recommender algorithms in, infact this library is inspired by them - **Surprise** and **Funk-SVD**. However, there is bottleneck in training time, when the training data is huge. This can be solved by using ready frameworks like **Tensorflow 2** & **Keras** which support running computations on GPU thus delivering speed and higher throughput. Building on top of such frameworks also provide us with off the shelf capabilities such as using different optimizers, Data API, exporting the model to other platforms and much more. Tfrec provides _ready implementations of algorithms_ which can be directly used with few lines of Tensorflow Code. Currently this library supports [these](#user-content-supported-algorithms-) algorithms.
 
 ### Installation ⚡
 
@@ -43,6 +43,8 @@ data = fetch_ml_100k()
 dataset, user_item_encodings = preprocess_and_split(data)
 
 (x_train, y_train), (x_test, y_test) = dataset
+(user_to_encoded, encoded_to_user,item_to_encoded, encoded_to_item) = user_item_encodings
+
 num_users = len(np.unique(data['userId']))
 num_movies = len(np.unique(data['movieId']))
 global_mean = np.mean(data['rating'])
