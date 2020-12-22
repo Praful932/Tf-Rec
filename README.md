@@ -9,6 +9,9 @@
 ![Tests](https://github.com/Praful932/Tf-Rec/workflows/Tests/badge.svg)
 ![Publish(Package)](https://github.com/Praful932/Tf-Rec/workflows/Publish(Package)/badge.svg)
 ![Deploy(Docs)](https://github.com/Praful932/Tf-Rec/workflows/Deploy(Docs)/badge.svg)
+<br>
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FPraful932%2FTf-Rec&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+![GitHub stars](https://img.shields.io/github/stars/Praful932/Tf-Rec?style=social) ![GitHub forks](https://img.shields.io/github/forks/Praful932/Tf-Rec?style=social) ![GitHub watchers](https://img.shields.io/github/watchers/Praful932/Tf-Rec?style=social)
 
 # Contents
 
