@@ -6,4 +6,4 @@ from tfrec.datasets import fetch_ml_100k
 class Test_ml_100k(unittest.TestCase):
     def test_instance(self):
         dataset = fetch_ml_100k()
-        self.assertIsInstance(dataset, pd.core.frame.DataFrame)
+        self.assertIsInstance(dataset, int)
