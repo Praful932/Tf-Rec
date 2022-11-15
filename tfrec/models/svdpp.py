@@ -4,7 +4,7 @@ import numpy as np
 
 
 class SVDpp(keras.Model):
-    """ **SVD++** - An extension of the SVD Model employing implicit feedback.
+    """**SVD++** - An extension of the SVD Model employing implicit feedback.
 
     As originally demonstrated in the paper -
     Factorization meets the neighborhood: a multifaceted collaborative filtering model
@@ -45,8 +45,23 @@ class SVDpp(keras.Model):
         If the method `implicit_feedback(X)` is not called before calling `fit()`.
     """
 
-    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, init_mean=0, init_std_dev=0.1, reg_all=0.0001,
-                 reg_user_embed=None, reg_item_embed=None, reg_impl_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+    def __init__(
+        self,
+        n_users,
+        n_items,
+        global_mean,
+        embedding_dim=50,
+        init_mean=0,
+        init_std_dev=0.1,
+        reg_all=0.0001,
+        reg_user_embed=None,
+        reg_item_embed=None,
+        reg_impl_embed=None,
+        reg_user_bias=None,
+        reg_item_bias=None,
+        random_state=None,
+        **kwargs
+    ):
 
         super().__init__(**kwargs)
         self.n_users = n_users
@@ -64,35 +79,40 @@ class SVDpp(keras.Model):
         self.random_state = random_state
 
         self.user_embedding = keras.layers.Embedding(
-            input_dim=self.n_users, output_dim=self.embedding_dim,
+            input_dim=self.n_users,
+            output_dim=self.embedding_dim,
             embeddings_initializer=tf.keras.initializers.RandomNormal(
-                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
-            embeddings_regularizer=tf.keras.regularizers.L2(
-                self.reg_user_embed)
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state
+            ),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_embed),
         )
         self.item_embedding = keras.layers.Embedding(
-            input_dim=self.n_items, output_dim=self.embedding_dim,
+            input_dim=self.n_items,
+            output_dim=self.embedding_dim,
             embeddings_initializer=tf.keras.initializers.RandomNormal(
-                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
-            embeddings_regularizer=tf.keras.regularizers.L2(
-                self.reg_item_embed)
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state
+            ),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_embed),
         )
         self.item_implicit_embedding = keras.layers.Embedding(
-            input_dim=self.n_items, output_dim=self.embedding_dim,
+            input_dim=self.n_items,
+            output_dim=self.embedding_dim,
             embeddings_initializer=tf.keras.initializers.RandomNormal(
-                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
-            embeddings_regularizer=tf.keras.regularizers.L2(
-                self.reg_impl_embed)
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state
+            ),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_impl_embed),
         )
         self.user_bias = keras.layers.Embedding(
-            input_dim=self.n_users, output_dim=1,
+            input_dim=self.n_users,
+            output_dim=1,
             embeddings_initializer=tf.keras.initializers.Zeros(),
-            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_bias)
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_bias),
         )
         self.item_bias = keras.layers.Embedding(
-            input_dim=self.n_items, output_dim=1,
+            input_dim=self.n_items,
+            output_dim=1,
             embeddings_initializer=tf.keras.initializers.Zeros(),
-            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_bias)
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_bias),
         )
 
     def implicit_feedback(self, X):
@@ -117,7 +137,8 @@ class SVDpp(keras.Model):
 
         # Converts to ragged tensor to be used during forward pass
         self.user_rated_items = tf.ragged.constant(
-            self.user_rated_items, dtype=tf.int32)
+            self.user_rated_items, dtype=tf.int32
+        )
 
     def call(self, inputs):
         """Forward pass of input batch."""
@@ -125,27 +146,28 @@ class SVDpp(keras.Model):
         user, item = inputs[:, 0], inputs[:, 1]
 
         # Get Embeddings
-        user_embed, item_embed = self.user_embedding(
-            user), self.item_embedding(item)
+        user_embed, item_embed = self.user_embedding(user), self.item_embedding(item)
         user_bias, item_bias = self.user_bias(user), self.item_bias(item)
 
         # Gather Rated Items & their lengths
         rated_items = tf.gather(self.user_rated_items, user)
         item_lengths = tf.cast(
-            tf.map_fn(tf.shape, rated_items).to_tensor(), dtype=tf.float32)
+            tf.map_fn(tf.shape, rated_items).to_tensor(), dtype=tf.float32
+        )
 
         # Calculate Implicit Feedback
         implicit_embed = self.item_implicit_embedding(rated_items)
         implicit_embed_sum = tf.reduce_sum(implicit_embed, axis=1)
         moderated_implicit_embed = tf.math.divide(
-            implicit_embed_sum, tf.math.sqrt(item_lengths))
+            implicit_embed_sum, tf.math.sqrt(item_lengths)
+        )
 
         # Calculate Final Rating with bias
         total_user_embed = tf.math.add(user_embed, moderated_implicit_embed)
-        rating = tf.math.reduce_sum(tf.multiply(
-            total_user_embed, item_embed), 1, keepdims=True)
-        total_bias = tf.math.add(
-            self.global_mean, tf.math.add(user_bias, item_bias))
+        rating = tf.math.reduce_sum(
+            tf.multiply(total_user_embed, item_embed), 1, keepdims=True
+        )
+        total_bias = tf.math.add(self.global_mean, tf.math.add(user_bias, item_bias))
         rating = tf.math.add(rating, total_bias)
 
         return rating

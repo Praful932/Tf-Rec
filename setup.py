@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import pkg_resources
 
 # The below line is used by GH Actions and should not be modified or moved above or below
-version = '1.0.0'
+version = "1.0.0"
 
 readme_path = pkg_resources.resource_filename(__name__, "README.md")
 with open(readme_path, encoding="utf8") as f:
@@ -31,12 +31,12 @@ setup(
     ],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     install_requires=[
-        "tensorflow>=2.0",
-        "numpy>=1.18.5",
-        "pandas>=1.1.5",
-        "scikit-learn>=0.22.2",
-        "requests",
+        "tensorflow>=2.6",
+        "numpy>=1.19",
+        "pandas>=1.3",
+        "scikit-learn>=1.1",
+        "requests>=2.0",
     ],
 )

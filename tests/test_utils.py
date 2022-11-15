@@ -5,7 +5,6 @@ from tfrec.utils.model_utils import preprocess_and_split
 
 
 class TestPreprocess(unittest.TestCase):
-
     def setUp(self):
         self.dataset = fetch_ml_100k()
 
@@ -21,7 +20,12 @@ class TestPreprocess(unittest.TestCase):
 
         self.assertEqual(len(x_train) + len(x_test), len(self.dataset))
 
-        (user_to_encoded, encoded_to_user, item_to_encoded, encoded_to_item) = user_item_encodings
+        (
+            user_to_encoded,
+            encoded_to_user,
+            item_to_encoded,
+            encoded_to_item,
+        ) = user_item_encodings
 
         for instance in user_item_encodings:
             self.assertIsInstance(instance, dict)

@@ -1,0 +1,16 @@
+name: tf-rec
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - poetry=1
+  - tensorflow==2.6
+  - numpy
+  - pandas
+  - scikit-learn
+  - pdoc3
+  - pre-commit
+  - conda-lock
+  - mamba
+  - python=3.9
+  - pip

@@ -1,7 +1,7 @@
 
 name: Build(Docs)
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on all branches
   push:
@@ -22,11 +22,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
         # Semantic version range syntax or exact version of a Python version
-        python-version: '3.8'
+        python-version: '3.9'
 
     - name: Install package
       run: pip install -e .

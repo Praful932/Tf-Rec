@@ -4,7 +4,7 @@ import numpy as np
 
 
 class SVD(keras.Model):
-    """ **SVD** - A Matrix Factorization Algorithm for Collaborative Filtering.
+    """**SVD** - A Matrix Factorization Algorithm for Collaborative Filtering.
 
     As demonstrated by Simon Funk in his
     blogpost https://sifter.org/~simon/journal/20061211.html.
@@ -41,9 +41,23 @@ class SVD(keras.Model):
         Seed variable, useful for reproducing results (default is `None`).
     """
 
-    def __init__(self, n_users, n_items, global_mean, embedding_dim=50, biased=True,
-                 init_mean=0, init_std_dev=0.1, reg_all=0.0001, reg_user_embed=None,
-                 reg_item_embed=None, reg_user_bias=None, reg_item_bias=None, random_state=None, **kwargs):
+    def __init__(
+        self,
+        n_users,
+        n_items,
+        global_mean,
+        embedding_dim=50,
+        biased=True,
+        init_mean=0,
+        init_std_dev=0.1,
+        reg_all=0.0001,
+        reg_user_embed=None,
+        reg_item_embed=None,
+        reg_user_bias=None,
+        reg_item_bias=None,
+        random_state=None,
+        **kwargs
+    ):
         """
         Parameters
         -----------
@@ -91,31 +105,33 @@ class SVD(keras.Model):
         self.random_state = random_state
 
         self.user_embedding = keras.layers.Embedding(
-            input_dim=self.n_users, output_dim=self.embedding_dim,
+            input_dim=self.n_users,
+            output_dim=self.embedding_dim,
             embeddings_initializer=tf.keras.initializers.RandomNormal(
-                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
-            embeddings_regularizer=tf.keras.regularizers.L2(
-                self.reg_user_embed)
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state
+            ),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_embed),
         )
         self.item_embedding = keras.layers.Embedding(
-            input_dim=self.n_items, output_dim=self.embedding_dim,
+            input_dim=self.n_items,
+            output_dim=self.embedding_dim,
             embeddings_initializer=tf.keras.initializers.RandomNormal(
-                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state),
-            embeddings_regularizer=tf.keras.regularizers.L2(
-                self.reg_item_embed)
+                mean=self.init_mean, stddev=self.init_std_dev, seed=self.random_state
+            ),
+            embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_embed),
         )
         if self.biased:
             self.user_bias = keras.layers.Embedding(
-                input_dim=self.n_users, output_dim=1,
+                input_dim=self.n_users,
+                output_dim=1,
                 embeddings_initializer=tf.keras.initializers.Zeros(),
-                embeddings_regularizer=tf.keras.regularizers.L2(
-                    self.reg_user_bias)
+                embeddings_regularizer=tf.keras.regularizers.L2(self.reg_user_bias),
             )
             self.item_bias = keras.layers.Embedding(
-                input_dim=self.n_items, output_dim=1,
+                input_dim=self.n_items,
+                output_dim=1,
                 embeddings_initializer=tf.keras.initializers.Zeros(),
-                embeddings_regularizer=tf.keras.regularizers.L2(
-                    self.reg_item_bias)
+                embeddings_regularizer=tf.keras.regularizers.L2(self.reg_item_bias),
             )
 
     def call(self, inputs):
@@ -124,16 +140,17 @@ class SVD(keras.Model):
         user, item = inputs[:, 0], inputs[:, 1]
 
         # Dot Product
-        user_embed, item_embed = self.user_embedding(
-            user), self.item_embedding(item)
-        rating = tf.math.reduce_sum(tf.multiply(
-            user_embed, item_embed), 1, keepdims=True)
+        user_embed, item_embed = self.user_embedding(user), self.item_embedding(item)
+        rating = tf.math.reduce_sum(
+            tf.multiply(user_embed, item_embed), 1, keepdims=True
+        )
 
         # Add global mean and bias if self.bias = True
         if self.biased:
             user_bias, item_bias = self.user_bias(user), self.item_bias(item)
             total_bias = tf.math.add(
-                self.global_mean, tf.math.add(user_bias, item_bias))
+                self.global_mean, tf.math.add(user_bias, item_bias)
+            )
             rating = tf.math.add(rating, total_bias)
 
         return rating
