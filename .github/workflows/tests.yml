@@ -28,20 +28,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python 🐍 ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Setup conda
+        uses: s-weigand/setup-conda@v1
         with:
+          update-conda: true
           python-version: ${{ matrix.python-version }}
+          conda-channels: anaconda, conda-forge
+          activate-conda: true
 
-      # Setup conda
-      - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2.2.0
-        with:
-          auto-activate-base: true
-
-      # Install conda env
-      - name : Install conda env
-        shell: bash -l {0}
+      - name: Install configured conda envs
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
