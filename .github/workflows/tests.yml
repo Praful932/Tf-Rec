@@ -34,6 +34,9 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           auto-activate-base: true
+
+      # Install conda env
+      - name : Install conda env
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
