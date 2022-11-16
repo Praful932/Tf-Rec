@@ -33,9 +33,11 @@ jobs:
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.2.0
         with:
-          auto-activate-base: false
-          activate-environment: conda_env
-          environment-file : conda-lock.yml
+          auto-activate-base: true
+        run: |
+          conda install --channel=conda-forge conda-lock
+          conda-lock install --name tf-rec conda-lock.yml
+          conda activate tf-rec
 
       - name: Run Lint and Unit Tests ⚒
         run: |
