@@ -37,6 +37,7 @@ jobs:
              conda activate tf-rec
 
       - name: Run Lint and Unit Tests ⚒
+        shell: bash -el {0}
         run: |
           pre-commit run --all-files
           python -m unittest discover
