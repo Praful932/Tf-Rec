@@ -28,6 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Python 🐍 ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
       # Setup conda
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v2.2.0
