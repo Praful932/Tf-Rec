@@ -17,9 +17,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
 
     strategy:
       matrix:
@@ -39,6 +36,7 @@ jobs:
 
       # Install conda env
       - name : Install conda env
+        shell: bash -l {0}
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
