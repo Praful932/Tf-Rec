@@ -19,22 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.7', '3.8', '3.9']
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        python-version: ['3.8', '3.9']
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-
-      - name: Set up Python 🐍 ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      # Setup conda
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
-          python-version: ${{ matrix.python-version }}
-
+          auto-activate-base: true
+          activate-environment: ""
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: conda-lock install --name tf-rec conda-lock.yml |
+             conda activate tf-rec
 
       - name: Run Lint and Unit Tests ⚒
         run: |
