@@ -14,29 +14,34 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  tests:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
 
     strategy:
       matrix:
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
-        python-version: ['3.8', '3.9']
-
+        os: ["macos-latest"]
+        python-version: ['3.9']
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup conda
-        uses: s-weigand/setup-conda@v1
+      # Setup conda
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
-          update-conda: true
-          python-version: ${{ matrix.python-version }}
-          conda-channels: anaconda, conda-forge
-          activate-conda: true
+          miniconda-version: "latest"
+          channels: conda-forge, defaults
+          use-only-tar-bz2: true
+          auto-update-conda: true
+          auto-activate-base: true
 
-      - name: Install configured conda envs
+      # Install conda env
+      - name : Install conda env
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
