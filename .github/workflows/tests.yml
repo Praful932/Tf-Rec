@@ -39,13 +39,13 @@ jobs:
           use-only-tar-bz2: true
           auto-update-conda: true
           auto-activate-base: true
+          activate-environment: tf-rec
 
       # Install conda env
       - name : Install conda env
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
-          conda activate tf-rec
 
       - name: Run Lint and Unit Tests ⚒
         run: |
