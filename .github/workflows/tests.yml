@@ -50,3 +50,4 @@ jobs:
       - name: Run Lint and Unit Tests ⚒
         run: |
           pre-commit run --all-files
+          python -m unittest discover
