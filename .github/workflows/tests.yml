@@ -7,6 +7,13 @@ on:
     branches: '*'
   pull_request:
     branches: '*'
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -46,6 +53,11 @@ jobs:
         run: |
           conda install --channel=conda-forge conda-lock
           conda-lock install --name tf-rec conda-lock.yml
+
+      # Debugging
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
 
       - name: Run Lint and Unit Tests ⚒
         run: |
