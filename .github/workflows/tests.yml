@@ -42,14 +42,17 @@ jobs:
           channels: conda-forge, defaults
           use-only-tar-bz2: true
           auto-update-conda: true
-          auto-activate-base: true
-          activate-environment: ""
+          activate-environment: tf-rec
 
       # Install conda env
       - name : Install conda env
         run: |
           conda install --channel=conda-forge conda-lock
-          conda-lock install --name base conda-lock.yml
+          conda-lock install --name tf-rec conda-lock.yml
+
+      # Activate env
+      - name : Activate env
+        run : conda activate tf-rec
 
       # Debugging
       - name: Setup tmate session
