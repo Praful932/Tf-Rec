@@ -5,6 +5,7 @@ __pycache__/
 
 ml-latest-small
 .vscode
+.DS_Store
 
 # C extensions
 *.so

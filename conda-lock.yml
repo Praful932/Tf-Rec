@@ -17,12 +17,12 @@ metadata:
   - url: conda-forge
     used_env_vars: []
   content_hash:
-    linux-64: 1d656521843728b3ba47ed36480d7b05bbb5524603e6bf44a7a1a73968b669a0
-    osx-arm64: cd7060ed264a0096ca3a596f95017d72fa671af46d4457fe38b4e88183790d4c
-    win-64: 1060b9f7c303cdff146b4841e1171336a69ae563bdd5d9ed49381c0b10c4ffc9
+    linux-64: 00b2ef3ab4d10a51971fd8e59c8dae9f5e76b68da63150cbee20b99f0c112d1e
+    osx-arm64: f82951f3166358a8097fea1d9b0055a422394f811eb2a9c59f831f089e7c1452
+    win-64: b0d834947e72eda3391c80a2b719f56979296c2a2e335fb5fcb49a05d1383b47
   platforms:
-  - osx-arm64
   - linux-64
+  - osx-arm64
   - win-64
   sources:
   - /Users/praful932/myfiles/code/Tf-Rec/environment.yml
@@ -695,16 +695,16 @@ package:
   dependencies:
     libgcc-ng: '>=11.2.0'
     readline: '>=8.0,<9.0a0'
-    zlib: '>=1.2.12,<1.3.0a0'
+    zlib: '>=1.2.13,<1.3.0a0'
   hash:
-    md5: 1fd3c10003776a5c0ebd14205327f541
-    sha256: ecd4068ea760b526db2550da1313195bc6e2ea99960fb769f614836ac9f01382
+    md5: d1300b056e728ea61a0bf135b035e60d
+    sha256: 3df5f55bbb941e772bb866bf18bec7b11094f01cc0ac41225705caedd8d0e4a8
   manager: conda
   name: sqlite
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/linux-64/sqlite-3.39.3-h5082296_0.conda
-  version: 3.39.3
+  url: https://repo.anaconda.com/pkgs/main/linux-64/sqlite-3.40.0-h5082296_0.conda
+  version: 3.40.0
 - category: main
   dependencies:
     libgcc-ng: '>=7.5.0'
@@ -873,16 +873,16 @@ package:
   version: 4.0.2
 - category: main
   dependencies:
-    python: ''
+    python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 3bc977a57587a7964921e3e1e2e31f9e
-    sha256: daf213916e7797c3493db7bbe43b3235d0606a18dd152af129a14bec8e5f56a2
+    md5: 539d5a954b41d0bf15a5ee4faf177987
+    sha256: 46d121b0f5edc2db8372fba11c341989ad5317a067eaf56ad6a4e0df40d42ff7
   manager: conda
   name: attrs
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/noarch/attrs-21.4.0-pyhd3eb1b0_0.conda
-  version: 21.4.0
+  url: https://repo.anaconda.com/pkgs/main/linux-64/attrs-22.1.0-py39h06a4308_0.conda
+  version: 22.1.0
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -1078,6 +1078,18 @@ package:
   version: 1.1.1
 - category: main
   dependencies:
+    python: '>=3.6'
+  hash:
+    md5: 4aeef3bf046f7e1ed44efe59fb7d3e23
+    sha256: c0156c162ce479d5eafd468acb956b977b7b9ae9236494b698d5b4dab02cdd7d
+  manager: conda
+  name: keras
+  optional: false
+  platform: linux-64
+  url: https://repo.anaconda.com/pkgs/main/noarch/keras-2.6.0-pyhd3eb1b0_0.conda
+  version: 2.6.0
+- category: main
+  dependencies:
     fmt: '>=9.1.0,<10.0a0'
     libarchive: '>=3.5.2,<3.6.0a0'
     libcurl: '>=7.86.0,<8.0a0'
@@ -1157,14 +1169,14 @@ package:
     libstdcxx-ng: '>=11.2.0'
     python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 00a19627eb46264341da4f2f7c013c32
-    sha256: 7268f16b310a3cd9a014d14b5e70eacc8d68d912bfcbb9ff135fc96e76ade7de
+    md5: 223df6a6fcbaf0f62d606266c342c504
+    sha256: 7c241adc5350c157f210a14ddf2518f75040aebdf0d506b431f7f52764bc2d71
   manager: conda
   name: numpy-base
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/linux-64/numpy-base-1.23.3-py39h1e6e340_1.conda
-  version: 1.23.3
+  url: https://repo.anaconda.com/pkgs/main/linux-64/numpy-base-1.23.4-py39h1e6e340_0.conda
+  version: 1.23.4
 - category: main
   dependencies:
     python: ''
@@ -1776,17 +1788,17 @@ package:
     libgcc-ng: '>=11.2.0'
     libopenblas: '>=0.3.20,<1.0a0'
     libstdcxx-ng: '>=11.2.0'
-    numpy-base: 1.23.3 py39h1e6e340_1
+    numpy-base: 1.23.4 py39h1e6e340_0
     python: '>=3.9,<3.10.0a0'
   hash:
-    md5: c3f6c2ec45dca9f1a5769958b62a8608
-    sha256: 6c761d24d7573f86a88a056020049616bb45f33425006c7f99aab904c9ba07bc
+    md5: b013ad3a4f3dea9248f532ac7b3c1178
+    sha256: 878e5eaf6ad701e122f8aa0ca96997a5a87b2cff5dbd73ee6cba3458d82b7583
   manager: conda
   name: numpy
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/linux-64/numpy-1.23.3-py39hf838250_1.conda
-  version: 1.23.3
+  url: https://repo.anaconda.com/pkgs/main/linux-64/numpy-1.23.4-py39hf838250_0.conda
+  version: 1.23.4
 - category: main
   dependencies:
     pyparsing: '>=2.0.2'
@@ -2075,14 +2087,14 @@ package:
     packaging: ''
     python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 5b613c52f85a39e69b4465233fb370e5
-    sha256: fc24809ede0089e6403167247d51c0b02deebb6f68077062b1250bb9ea847c5b
+    md5: a2d69a1398d61a575e4e92f770deab44
+    sha256: a32b43968d0cff59ef725137386a455b4022b89db645649765bfc16656f87673
   manager: conda
   name: numexpr
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/linux-64/numexpr-2.8.3-py39hd2a5715_0.conda
-  version: 2.8.3
+  url: https://repo.anaconda.com/pkgs/main/linux-64/numexpr-2.8.4-py39hd2a5715_0.conda
+  version: 2.8.4
 - category: main
   dependencies:
     numpy: ''
@@ -2252,23 +2264,23 @@ package:
   version: 3.2.1
 - category: main
   dependencies:
-    bottleneck: '>=1.3.1'
+    bottleneck: '>=1.3.2'
     libgcc-ng: '>=11.2.0'
     libstdcxx-ng: '>=11.2.0'
-    numexpr: '>=2.7.1'
-    numpy: '>=1.19.2,<2.0a0'
+    numexpr: '>=2.7.3'
+    numpy: '>=1.16,<2.0a0'
     python: '>=3.9,<3.10.0a0'
     python-dateutil: '>=2.8.1'
     pytz: '>=2020.1'
   hash:
-    md5: 3906adc591c4c8973d9e0a175144a98e
-    sha256: 635ee1960ff142dc7fc3f109d64afc64ab2b959c3adc2c6ad993ca7428fd9b35
+    md5: 1a18e13e6f3fee6b4ea470f586cfe7a7
+    sha256: 78243a9b3c258aef7b423d786d2fad8e4dfeb7ce134cfdcfb35a2be8da027734
   manager: conda
   name: pandas
   optional: false
   platform: linux-64
-  url: https://repo.anaconda.com/pkgs/main/linux-64/pandas-1.4.4-py39h6a678d5_0.conda
-  version: 1.4.4
+  url: https://repo.anaconda.com/pkgs/main/linux-64/pandas-1.5.1-py39h417a72b_0.conda
+  version: 1.5.1
 - category: main
   dependencies:
     mako: ''
@@ -2800,6 +2812,17 @@ package:
 - category: main
   dependencies: {}
   hash:
+    md5: 3f6a38442ba0fd3d273dc9127a761272
+    sha256: a2d993bba01ce818c4496f12da6445a63705d5e065811b86817262fb70f98fa4
+  manager: conda
+  name: libffi
+  optional: false
+  platform: osx-arm64
+  url: https://repo.anaconda.com/pkgs/main/osx-arm64/libffi-3.4.2-hca03da5_6.conda
+  version: 3.4.2
+- category: main
+  dependencies: {}
+  hash:
     md5: 686f9c755574aa221f29fbcf36a67265
     sha256: 2eb33065783b802f71d52bef6f15ce0fafea0adc8506f10ebd0d490244087bec
   manager: conda
@@ -2852,6 +2875,17 @@ package:
   platform: osx-arm64
   url: https://repo.anaconda.com/pkgs/main/noarch/pybind11-abi-4-hd3eb1b0_0.conda
   version: '4'
+- category: main
+  dependencies: {}
+  hash:
+    md5: f8fb5fb65327a2429b084833c8ff1dbc
+    sha256: 9434a23c734685db9a5017206dae58f141e2edddec2ee9e1ec10a3fdefa55c0f
+  manager: conda
+  name: python_abi
+  optional: false
+  platform: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.9-3_cp39.conda
+  version: '3.9'
 - category: main
   dependencies: {}
   hash:
@@ -2946,18 +2980,6 @@ package:
   version: 3.1.20210910
 - category: main
   dependencies:
-    libcxx: '>=12.0.0'
-  hash:
-    md5: 966493b457cb64b47d681e80ff39807c
-    sha256: c5354e8842160ddc2e588135c610995763c121561ff6db5dd93262017abbac7d
-  manager: conda
-  name: libffi
-  optional: false
-  platform: osx-arm64
-  url: https://repo.anaconda.com/pkgs/main/osx-arm64/libffi-3.4.2-hc377ac9_4.conda
-  version: 3.4.2
-- category: main
-  dependencies:
     llvm-openmp: '>=8.0.0'
   hash:
     md5: 731b10bb5430bc63ac2bd46ddcaa77db
@@ -2968,6 +2990,18 @@ package:
   platform: osx-arm64
   url: https://repo.anaconda.com/pkgs/main/osx-arm64/libgfortran5-11.3.0-h009349e_28.conda
   version: 11.3.0
+- category: main
+  dependencies:
+    libzlib: '>=1.2.13,<1.3.0a0'
+  hash:
+    md5: d090fcec993f4ef0a90e6df7f231a273
+    sha256: 5e8992b2099bb4767996e1bed70945ba39f61399ab912ba2a2770d12c165acb5
+  manager: conda
+  name: libsqlite
+  optional: false
+  platform: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.40.0-h76d750c_0.tar.bz2
+  version: 3.40.0
 - category: main
   dependencies:
     libcxx: '>=12.0.0'
@@ -3175,16 +3209,16 @@ package:
 - category: main
   dependencies:
     readline: '>=8.1.2,<9.0a0'
-    zlib: '>=1.2.12,<1.3.0a0'
+    zlib: '>=1.2.13,<1.3.0a0'
   hash:
-    md5: 0555949f618ad9efceba9b8254f9bbbc
-    sha256: c2d0a63d696c637a6f91e3e05c7a99e9bc7da97b419196c0741c71d347cc48c4
+    md5: c20f7df4e90665cc874f7aa6ee428ec2
+    sha256: ba46a8b118d3d6b86182831ced7b16d3d1b7c8800930e3b5007b328054941883
   manager: conda
   name: sqlite
   optional: false
   platform: osx-arm64
-  url: https://repo.anaconda.com/pkgs/main/osx-arm64/sqlite-3.39.3-h1058600_0.conda
-  version: 3.39.3
+  url: https://repo.anaconda.com/pkgs/main/osx-arm64/sqlite-3.40.0-h7a7dc30_0.conda
+  version: 3.40.0
 - category: main
   dependencies:
     zlib: '>=1.2.12,<1.3.0a0'
@@ -3295,24 +3329,24 @@ package:
 - category: main
   dependencies:
     bzip2: '>=1.0.8,<2.0a0'
-    libffi: '>=3.4.2,<3.5.0a0'
-    libzlib: '>=1.2.11,<1.3.0a0'
+    libffi: '>=3.4,<4.0a0'
+    libsqlite: '>=3.40.0,<4.0a0'
+    libzlib: '>=1.2.13,<1.3.0a0'
     ncurses: '>=6.3,<7.0a0'
-    openssl: '>=1.1.1o,<1.1.2a'
-    readline: '>=8.1,<9.0a0'
-    sqlite: '>=3.38.5,<4.0a0'
+    openssl: '>=1.1.1s,<1.1.2a'
+    readline: '>=8.1.2,<9.0a0'
     tk: '>=8.6.12,<8.7.0a0'
     tzdata: ''
-    xz: '>=5.2.5,<5.3.0a0'
+    xz: '>=5.2.6,<6.0a0'
   hash:
-    md5: 3c208c33e187da64cf2f13497b63d9ec
-    sha256: b74487b8d2d922e0441f6b7ddd73ce0525baa3ef077e831efcb68e6a21e2091f
+    md5: 7c2f3d3b1483cdf61899b4fab18633d0
+    sha256: f070779c1cea0e927d631075a37d875ce1debfb6c7650bc9fc0dc55f343b73c4
   manager: conda
   name: python
   optional: false
   platform: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.9.13-hc596b02_0_cpython.tar.bz2
-  version: 3.9.13
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.9.15-h2d96c93_0_cpython.conda
+  version: 3.9.15
 - category: main
   dependencies:
     python: ''
@@ -3339,16 +3373,16 @@ package:
   version: 4.0.2
 - category: main
   dependencies:
-    python: ''
+    python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 3bc977a57587a7964921e3e1e2e31f9e
-    sha256: daf213916e7797c3493db7bbe43b3235d0606a18dd152af129a14bec8e5f56a2
+    md5: 339c43017a614a873694b2b6c971ed13
+    sha256: 3092e5c5fce494558001785eb3ba61c8784f413c4ea11ae141201bbcb45e9db0
   manager: conda
   name: attrs
   optional: false
   platform: osx-arm64
-  url: https://repo.anaconda.com/pkgs/main/noarch/attrs-21.4.0-pyhd3eb1b0_0.conda
-  version: 21.4.0
+  url: https://repo.anaconda.com/pkgs/main/osx-arm64/attrs-22.1.0-py39hca03da5_0.conda
+  version: 22.1.0
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -3823,18 +3857,6 @@ package:
   version: '1.12'
 - category: main
   dependencies:
-    python: 3.9.*
-  hash:
-    md5: ba3082b5441b482d5cfe328d4e7ba0bf
-    sha256: f611edf23ff71035043f2e81190b83bd4ee1e36fe3041b675aef2373dc33f8c4
-  manager: conda
-  name: python_abi
-  optional: false
-  platform: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.9-2_cp39.tar.bz2
-  version: '3.9'
-- category: main
-  dependencies:
     python: '>=3.9,<3.10.0a0'
   hash:
     md5: 9e13d1939d5f216c8fabe4feea0ad2ba
@@ -3907,6 +3929,20 @@ package:
   platform: osx-arm64
   url: https://repo.anaconda.com/pkgs/main/noarch/six-1.15.0-pyhd3eb1b0_0.tar.bz2
   version: 1.15.0
+- category: main
+  dependencies:
+    openssl: '>=1.1.1q,<1.1.2a'
+    python: '>=3.9,<3.10.0a0 *_cpython'
+    python_abi: 3.9.* *_cp39
+  hash:
+    md5: cb6ffa2eaccb5442016f02184804a1d2
+    sha256: 56b32db332f324e97c443b6c591f9809ed87e6ebe9a477c3fce438b55ca4cdf1
+  manager: conda
+  name: tensorboard-data-server
+  optional: false
+  platform: osx-arm64
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/tensorboard-data-server-0.6.0-py39haa0b8cc_3.tar.bz2
+  version: 0.6.0
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -4385,20 +4421,6 @@ package:
   version: 65.5.0
 - category: main
   dependencies:
-    openssl: '>=1.1.1q,<1.1.2a'
-    python: '>=3.9,<3.10.0a0 *_cpython'
-    python_abi: 3.9.* *_cp39
-  hash:
-    md5: cb6ffa2eaccb5442016f02184804a1d2
-    sha256: 56b32db332f324e97c443b6c591f9809ed87e6ebe9a477c3fce438b55ca4cdf1
-  manager: conda
-  name: tensorboard-data-server
-  optional: false
-  platform: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/tensorboard-data-server-0.6.0-py39haa0b8cc_3.tar.bz2
-  version: 0.6.0
-- category: main
-  dependencies:
     typing_extensions: 3.7.4.3 pyh06a4308_0
   hash:
     md5: 5d9911cb92d42667954318425b1f93e9
@@ -4585,19 +4607,19 @@ package:
   version: 1.7.0
 - category: main
   dependencies:
-    libcxx: '>=12.0.0'
+    libcxx: '>=14.0.6'
     numpy: '>=1.19.5,<2.0a0'
     packaging: ''
     python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 874806ce616420332ac07c151585b846
-    sha256: 471d8e90c6315504c5f339d702912dc6e2b480b25d88b45dddd84fcca8363662
+    md5: 04ebaa55e8a33d69046ec5a05cc12ccc
+    sha256: 9775a4164773009f5fccb7fbaa43d2647d87064e8bd995aca657a13d355b464a
   manager: conda
   name: numexpr
   optional: false
   platform: osx-arm64
-  url: https://repo.anaconda.com/pkgs/main/osx-arm64/numexpr-2.8.3-py39h144ceef_0.conda
-  version: 2.8.3
+  url: https://repo.anaconda.com/pkgs/main/osx-arm64/numexpr-2.8.4-py39h79ee842_0.conda
+  version: 2.8.4
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -5448,14 +5470,14 @@ package:
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 9d33b9aaff3a62026d7bb9e6931dd0ea
-    sha256: fdf9395dde2cdbc27fd4ed5faee31b3237f97ee115b48e74a931731cabaff1d8
+    md5: 0dbcc7f2175e0cee59218487d619599f
+    sha256: 66dc806320864e5b71d5c7abb370a74da1586764c675515a83db97c4409f51ab
   manager: conda
   name: sqlite
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/sqlite-3.39.3-h2bbff1b_0.conda
-  version: 3.39.3
+  url: https://repo.anaconda.com/pkgs/main/win-64/sqlite-3.40.0-h2bbff1b_0.conda
+  version: 3.40.0
 - category: main
   dependencies:
     vc: '>=14.1,<15.0a0'
@@ -5525,19 +5547,19 @@ package:
   version: 1.10.0
 - category: main
   dependencies:
-    openssl: '>=1.1.1q,<1.1.2a'
-    sqlite: '>=3.39.3,<4.0a0'
+    openssl: '>=1.1.1s,<1.1.2a'
+    sqlite: '>=3.40.0,<4.0a0'
     tzdata: ''
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 0c9cea9b65d6576b1030a8755c66daf4
-    sha256: 627e8200b6a1c4e405a8eb07ae3a3d3eec39bf7d16331aab28baaffe4e66a70e
+    md5: 1ec40381099aa2e8dfe73dbd622a3fcf
+    sha256: c3685f925ef9727ca4d5459592785f239fd70c1d29aaf33dd32fc99e1bef9b6c
   manager: conda
   name: python
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/python-3.9.15-h6244533_0.conda
+  url: https://repo.anaconda.com/pkgs/main/win-64/python-3.9.15-h6244533_1.conda
   version: 3.9.15
 - category: main
   dependencies:
@@ -5618,16 +5640,16 @@ package:
   version: 4.0.2
 - category: main
   dependencies:
-    python: ''
+    python: '>=3.9,<3.10.0a0'
   hash:
-    md5: 3bc977a57587a7964921e3e1e2e31f9e
-    sha256: daf213916e7797c3493db7bbe43b3235d0606a18dd152af129a14bec8e5f56a2
+    md5: b768249819054c68ad287d61080aff62
+    sha256: 774620db43bf63ce55b14ffaa6a4072cb5aa289887697cd3988a5451f7b4990a
   manager: conda
   name: attrs
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/noarch/attrs-21.4.0-pyhd3eb1b0_0.conda
-  version: 21.4.0
+  url: https://repo.anaconda.com/pkgs/main/win-64/attrs-22.1.0-py39haa95532_0.conda
+  version: 22.1.0
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -5825,6 +5847,18 @@ package:
   platform: win-64
   url: https://repo.anaconda.com/pkgs/main/win-64/joblib-1.1.1-py39haa95532_0.conda
   version: 1.1.1
+- category: main
+  dependencies:
+    python: '>=3.6'
+  hash:
+    md5: 4aeef3bf046f7e1ed44efe59fb7d3e23
+    sha256: c0156c162ce479d5eafd468acb956b977b7b9ae9236494b698d5b4dab02cdd7d
+  manager: conda
+  name: keras
+  optional: false
+  platform: win-64
+  url: https://repo.anaconda.com/pkgs/main/noarch/keras-2.6.0-pyhd3eb1b0_0.conda
+  version: 2.6.0
 - category: main
   dependencies:
     krb5: '>=1.19.3,<1.20.0a0'
@@ -6958,14 +6992,14 @@ package:
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 979f41fb95cea38969bb11800e21715e
-    sha256: 7ca3d0f5e4185700b3473667bef7f46c08af4110b6b1babc19c39d046344f2a3
+    md5: 18658d1804b24a31e97bc05de6a6e36a
+    sha256: c1d2a89172857e87f2743a1bee235902323e28dac2d19a21a88a3dc8205b9a76
   manager: conda
   name: numpy-base
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/numpy-base-1.23.3-py39h4da318b_0.conda
-  version: 1.23.3
+  url: https://repo.anaconda.com/pkgs/main/win-64/numpy-base-1.23.4-py39h4da318b_0.conda
+  version: 1.23.4
 - category: main
   dependencies:
     python: '>=3.9,<3.10.0a0'
@@ -7471,19 +7505,19 @@ package:
     mkl-service: '>=2.3.0,<3.0a0'
     mkl_fft: ''
     mkl_random: ''
-    numpy-base: 1.23.3 py39h4da318b_0
+    numpy-base: 1.23.4 py39h4da318b_0
     python: '>=3.9,<3.10.0a0'
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 780fbe64af7ce5744d4267f5adcf2363
-    sha256: 3ba9a75a27207a16ff1e7609e1ce7b9e6fe9d1ba186e6ed728116c8e5d62eb26
+    md5: d523e4821107524f0784b3d7d94d578d
+    sha256: 699758f766f4251e1843442eda05737c0630ac92e54ee009fc6265e99c705346
   manager: conda
   name: numpy
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/numpy-1.23.3-py39h3b20f71_0.conda
-  version: 1.23.3
+  url: https://repo.anaconda.com/pkgs/main/win-64/numpy-1.23.4-py39h3b20f71_0.conda
+  version: 1.23.4
 - category: main
   dependencies:
     blas: 1.0 mkl
@@ -7495,14 +7529,14 @@ package:
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 6621224e89d09ee45615e250811ec24c
-    sha256: 3ffc131722fc34a1281be73b3e7529fd5178311316f98137a72cf654c90e1da3
+    md5: dcccd96975e6957fd0bbd934b8ed2ee7
+    sha256: d483cb23b5403b37309d3ee9a5220d245b8e9d3c5b385c7dd4b582140c1d2a64
   manager: conda
   name: numexpr
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/numexpr-2.8.3-py39hb80d3ca_0.conda
-  version: 2.8.3
+  url: https://repo.anaconda.com/pkgs/main/win-64/numexpr-2.8.4-py39h5b0cc5e_0.conda
+  version: 2.8.4
 - category: main
   dependencies:
     numpy: ''
@@ -7598,23 +7632,23 @@ package:
   version: 1.1.2
 - category: main
   dependencies:
-    bottleneck: '>=1.3.1'
-    numexpr: '>=2.7.1'
-    numpy: '>=1.19.2,<2.0a0'
+    bottleneck: '>=1.3.2'
+    numexpr: '>=2.7.3'
+    numpy: '>=1.16,<2.0a0'
     python: '>=3.9,<3.10.0a0'
     python-dateutil: '>=2.8.1'
     pytz: '>=2020.1'
     vc: '>=14.1,<15.0a0'
     vs2015_runtime: '>=14.16.27012,<15.0a0'
   hash:
-    md5: 936e4587024bddb8bbd4e4fed780237e
-    sha256: a8a774726ada4fccdfc33d8042092fe281b44d59a04766f81489ce2320eed9e4
+    md5: b6f866c01c4e6356e754c50234543982
+    sha256: e8f0aede48cfda9919f8fefbd79dcf8966afd8494f1eebf967d39a8a06e0cdc1
   manager: conda
   name: pandas
   optional: false
   platform: win-64
-  url: https://repo.anaconda.com/pkgs/main/win-64/pandas-1.4.4-py39hd77b12b_0.conda
-  version: 1.4.4
+  url: https://repo.anaconda.com/pkgs/main/win-64/pandas-1.5.1-py39hf11a4ad_0.conda
+  version: 1.5.1
 - category: main
   dependencies:
     joblib: '>=1.0.0'

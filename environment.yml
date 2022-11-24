@@ -5,6 +5,7 @@ channels:
 dependencies:
   - poetry=1
   - tensorflow==2.6
+  - keras==2.6
   - numpy
   - pandas
   - scikit-learn
